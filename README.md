@@ -1,6 +1,6 @@
 # Sandbox-Pong-Practice
 ---
-CS30 object orientated programming Project
+ - CS30 object orientated programming Project
  - Finalized Version: https://github.com/JohnnyWongSchoolAccount/Sandbox-Pong-Game-On
 
 # To Do List - Marking
