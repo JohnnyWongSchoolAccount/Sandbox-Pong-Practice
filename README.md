@@ -12,6 +12,7 @@
  - Sound
  - Text
  - Easy, Medium and Impossible single player algorithms
+ - Two Player functionality
 # Easter Eggs Pong Features
  ---
  - Power ups
