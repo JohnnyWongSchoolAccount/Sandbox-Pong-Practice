@@ -11,6 +11,7 @@
  - Scoreboard
  - Sound
  - Text
+ - Easy, Medium and Impossible single player algorithms
 # Easter Eggs Pong Features
  ---
  - Power ups
