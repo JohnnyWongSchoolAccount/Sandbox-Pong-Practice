@@ -10,7 +10,7 @@ void setup() {
 }//end setup
 //
 void draw() {
-  myBall.draw();
+  myBall.ballDraw();
 }//end draw
 //
 void keyPressed() {}//end keyPressed
