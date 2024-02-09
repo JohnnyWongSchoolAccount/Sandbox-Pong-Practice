@@ -16,7 +16,7 @@ class Ball {
   }//end Ball hard coded constructor
   void ballDraw() {
     //Same as draw but only for the ball
-    fill(myBall.ballColor);
+    fill(ballColor);
     ellipse( ballX, ballY, ballDiameter, ballDiameter );
   }//end draw for ball constructor
 }//end Ball
