@@ -3,7 +3,7 @@ class Ball {
   float ballX, ballY, ballDiameter;
   color ballColor;
   //Constructor
-  Ball () {
+  Ball() {
     //This is "Ball myBall"
     int startX = (width/2);//middle of canvas
     int startY = (height/2);//middle of canvas
