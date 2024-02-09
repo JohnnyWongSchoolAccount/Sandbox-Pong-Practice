@@ -1,6 +1,8 @@
 class Ball {
   //Global Variables
   float ballX, ballY, ballDiameter;
+  float xVelocity, yVelocity;
+  int xDircetion, YDirection;
   color ballColor;
   //Constructor
   Ball() {
@@ -13,11 +15,20 @@ class Ball {
     ballX = startX-((ballDiameter)/2);
     ballY = startY-((ballDiameter)/2);
     ballColor = color(245, 189, 2); //RGB color
+    xVelocity = width/width;
+    yVelocity = height/height;
   }//end Ball hard coded constructor
+  void animatingMovement() {
+    ballX += (xVelocity);
+    ballY += (yVelocity);
+  }//end movement
   void ballDraw() {
-    //Same as draw but only for the ball
     fill(ballColor);
     ellipse( ballX, ballY, ballDiameter, ballDiameter );
   }//end draw for ball constructor
+  void ballBounce() {
+    xDircetion = -1;
+    YDirection = -1;
+  }//end bouceBounce
 }//end Ball
 //end pongBall
