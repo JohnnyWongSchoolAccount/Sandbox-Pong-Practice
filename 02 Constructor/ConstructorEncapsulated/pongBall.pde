@@ -14,7 +14,7 @@ class Ball {
     ballY = startY-((ballDiameter)/2);
     ballColor = color(245, 189, 2); //RGB color
   }//end Ball hard coded constructor
-  void draw() {
+  void ballDraw() {
     //Same as draw but only for the ball
     fill(myBall.ballColor);
     ellipse( ballX, ballY, ballDiameter, ballDiameter );
