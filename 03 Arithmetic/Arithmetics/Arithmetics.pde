@@ -24,4 +24,13 @@ void draw() {
 void keyPressed() {}//end keyPressed
 //
 void mousePressed() {}//end mousepressed
+//
+void ballCollisions() {
+  /*
+  if (ballX < (ballDiameter/2) || ballX > (width)-(ballDiameter/2)) ballColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
+  if (ballY < (ballDiameter/2) || ballY > (height)-(ballDiameter/2)) ballColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
+  if (ballX < (ballDiameter/2) || ballX > (width)-(ballDiameter/2)) (xVelocity) *= -1;
+  if (ballY < (ballDiameter/2) || ballY > (height)-(ballDiameter/2)) (yVelocity) *= -1;
+  */
+}//end ballCollisions
 //end Arithmetics
