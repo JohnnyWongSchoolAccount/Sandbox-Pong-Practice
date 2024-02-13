@@ -18,10 +18,10 @@ void draw() {
   firstBall.ballDraw();
   firstBall.animatingMovement();
   secondBall.ballDraw();
-  secondBall.animatingMovement2();
+  secondBall.animatingMovement();
 }//end draw
 //
 void keyPressed() {}//end keyPressed
 //
 void mousePressed() {}//end mousepressed
-//end ConstructorEncapsulated
+//end Arithmetics
