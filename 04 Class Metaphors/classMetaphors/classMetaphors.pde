@@ -1,11 +1,7 @@
 //Global Variables and objects
 Ball firstBall; //Both halfs of Constructor
-Ball secondBall;
-Ball thirdBall;
-Ball forthBall;
-Ball fifthBall;
-Ball sixthBall;
-Ball[] firework = new Ball[25];
+Ball[] firework = new Ball[10];
+Ball cheatBall;
 color backgroundColor;
 color pongTableColor = 255;
 //
@@ -14,13 +10,9 @@ void setup() {
   /*ScreenSizeChecker(); //for landscape, portrait or square veiw 
   Automatically adjusts for screen rotaction or change*/
   firstBall = new Ball();
-  secondBall = new Ball();
-  thirdBall = new Ball();
-  forthBall = new Ball();
-  fifthBall = new Ball();
-  sixthBall = new Ball();
-  for (int i=0; i < firework.length; i++) {
-    firework[i] = new Ball((1/2));//populating firework
+  cheatBall = new Ball(width*-1, height*-1, firstBall.ballDiameter, firstBall.ballColor);
+  for (int i=0; i < firework.length; i++) {//creating balls
+    firework[i] = new Ball(width*-1, height*-1, (1/2));//populating firework
   }
   backgroundColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
 }//end setup
@@ -28,11 +20,6 @@ void setup() {
 void draw() {
   background(backgroundColor);
   firstBall.ballDraw();
-  secondBall.ballDraw();
-  thirdBall.ballDraw();
-  forthBall.ballDraw();
-  fifthBall.ballDraw();
-  sixthBall.ballDraw();
   for (int i=0; i < firework.length; i++) {
     firework[i].ballDraw();//drawing 25 balls
   }
@@ -42,8 +29,9 @@ void keyPressed() {}//end keyPressed
 //
 void mousePressed() {
   for (int i=0; i < firework.length; i++) {
-    firework[i] = new Ball((1/2));//populating firework
+    firework[i] = new Ball(mouseX, mouseY, 0.5);//populating firework
   }
+  cheatBall = new Ball(mouseX, mouseY, firstBall.ballDiameter, firstBall.ballColor);
 }//end mousepressed
 //
 void ballCollisions() {
@@ -54,4 +42,4 @@ void ballCollisions() {
   if (ballY < (ballDiameter/2) || ballY > (height)-(ballDiameter/2)) (yVelocity) *= -1;
   */
 }//end ballCollisions
-//end Arithmetics
+//end ClassMetaphors

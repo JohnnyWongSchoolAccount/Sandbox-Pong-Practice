@@ -5,7 +5,7 @@ class Ball {
   float ballX, ballY, ballDiameter;
   float xVelocity, yVelocity;
   float xDelta, yDelta;
-  float gravity;
+  float gravity = 0.0;
   color ballColor;
   //Ball Constructor
   Ball() {
@@ -23,14 +23,22 @@ class Ball {
     this.xDelta = width/(width);//speed of ball
     this.yDelta = height/(height);//speed of ball
   }//end Ball hard coded constructor
+  //cheatBall Constructor
+  Ball(float ballXLocal, float ballYLocal, float ballDiameterParameter, color ballColorParameter) {
+    this.ballX = ballXLocal;
+    this.ballY = ballYLocal;
+    this.ballDiameter = ballDiameterParameter;
+    this.ballColor = ballColorParameter;
+  }//end cheatBall
   //Firework Constructor
-  Ball(float gravityLocal) {
-    ballX = mouseX;//triggers when ball enters goal region
-    ballY = mouseY;//triggers when ball enters goal region
-    ballColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255))); //RGB color
-    ballDiameter = random(width/20);
-    xVelocity = random(1,5);
-    yVelocity = random(1,5);
+  Ball(float ballXLocal, float ballYLocal, float gravityLocal) {
+    //triggers when ball enters goal region
+    this.ballX = ballXLocal;
+    this.ballY = ballYLocal;
+    this.ballColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255))); //RGB color
+    this.ballDiameter = random(width/25);
+    this.xVelocity = random(-5, 5);
+    this.yVelocity = random(-5, 5);
     gravity = gravityLocal;
   }//end Firework Constructor
   float xDirection() {
@@ -47,23 +55,24 @@ class Ball {
     }
     return yDirectionLocal;
   }//end yDirection
-  void animatingMovement() {
-    bounce();
-    yVelocity += gravity;
-    ballX += (xVelocity);
-    ballY += (yVelocity);
-  }//end animatingMovement
   void bounce() {
-    if (ballX < (ballDiameter/2) || ballX > (width)-(ballDiameter/2)) ballColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
-    if (ballY < (ballDiameter/2) || ballY > (height)-(ballDiameter/2)) ballColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
-    if (ballX < (ballDiameter/2) || ballX > (width)-(ballDiameter/2)) (xVelocity) *= -(xDelta);
-    if (ballY < (ballDiameter/2) || ballY > (height)-(ballDiameter/2)) (yVelocity) *= -(yDelta);
+    if (ballX <= (ballDiameter/2) || ballX >= (width)-(ballDiameter/2)) ballColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
+    if (ballY <= (ballDiameter/2) || ballY >= (height)-(ballDiameter/2)) ballColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
+    if (ballX <= (ballDiameter/2) || ballX >= (width)-(ballDiameter/2)) (xVelocity) *= -1;
+    if (ballY <= (ballDiameter/2) || ballY >= (height)-(ballDiameter/2)) (yVelocity) *= -1;
   }//end bounce
   void ballDraw() {
     stroke(ballColor);
     fill(ballColor);
     ellipse( ballX, ballY, ballDiameter, ballDiameter );
-    animatingMovement();
+    fill(0);
+    animatingMovement();//manipulating the variables
   }//end draw for ball constructor
+  void animatingMovement() {
+    bounce();
+    yVelocity += gravity;//ball() uneffected thus no gravity = constructor has no gravity variable
+    ballX += (xVelocity);
+    ballY += (yVelocity);
+  }//end animatingMovement
 }//end Ball
 //end pongBall
