@@ -29,7 +29,7 @@ void keyPressed() {}//end keyPressed
 //
 void mousePressed() {
   for (int i=0; i < firework.length; i++) {
-    firework[i] = new Ball(mouseX, mouseY, 0.5);//populating firework
+    firework[i] = new Ball(int(mouseX), int(mouseY), int(0.5));//populating firework
   }
   cheatBall = new Ball(mouseX, mouseY, firstBall.ballDiameter, firstBall.ballColor);
 }//end mousepressed

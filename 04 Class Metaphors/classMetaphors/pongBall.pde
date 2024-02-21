@@ -56,10 +56,15 @@ class Ball {
     return yDirectionLocal;
   }//end yDirection
   void bounce() {
-    if (ballX <= (ballDiameter/2) || ballX >= (width)-(ballDiameter/2)) ballColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
+    if (firstBall.ballX <= (ballDiameter/2) || firstBall.ballX >= (width)-(ballDiameter/2)) ballColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
     if (ballY <= (ballDiameter/2) || ballY >= (height)-(ballDiameter/2)) ballColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
     if (ballX <= (ballDiameter/2) || ballX >= (width)-(ballDiameter/2)) (xVelocity) *= -1;
     if (ballY <= (ballDiameter/2) || ballY >= (height)-(ballDiameter/2)) (yVelocity) *= -1;
+    if (firstBall.ballX <= (ballDiameter) || firstBall.ballX >= (width)-(ballDiameter)) {
+      for (int i=0; i < firework.length; i++) {
+        firework[i] = new Ball(int(ballX), int(ballY), int(0));//populating firework
+      }
+    }
   }//end bounce
   void ballDraw() {
     stroke(ballColor);
@@ -69,10 +74,11 @@ class Ball {
     animatingMovement();//manipulating the variables
   }//end draw for ball constructor
   void animatingMovement() {
-    bounce();
     yVelocity += gravity;//ball() uneffected thus no gravity = constructor has no gravity variable
     ballX += (xVelocity);
     ballY += (yVelocity);
+    //for (int i=0; i < firework.length; i++) firework[i].ballDiameter -= (ballDiameter/4);
+    bounce();
   }//end animatingMovement
 }//end Ball
 //end pongBall
