@@ -1,6 +1,7 @@
 # Sandbox-Pong-Practice
 ---
  - CS30 object orientated programming Project
+ - The most complete version of the pong game is in 'ClassMetaphors'
  - Finalized Version: https://github.com/JohnnyWongSchoolAccount/Sandbox-Pong-Game-On
 
 # To Do List - Marking
@@ -15,9 +16,12 @@
  - Two Player functionality
 # Easter Eggs Pong Features
  ---
- - Power ups
- - Irregular angles of reflection
- - Adding barriers
- - Augmenting game elements GUI
- - Rare easter eggs
- - Editable paddle/ball colors
+ - Power ups WIP
+ - Irregular angles of reflection WIP
+ - Adding barriers WIP
+ - Augmenting game elements GUI WIP
+ - Rare easter eggs WIP
+ - Editable paddle/ball colors WIP
+ - Ball Spliting effect at goal point
+ - Random colors
+ - Color changing ball
