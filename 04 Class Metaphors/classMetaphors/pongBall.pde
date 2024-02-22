@@ -6,6 +6,7 @@ class Ball {
   float xVelocity, yVelocity;
   float xDelta, yDelta;
   float gravity = 0.0;
+  boolean disappear = false;
   color ballColor;
   //Ball Constructor
   Ball() {
@@ -18,17 +19,19 @@ class Ball {
     this.ballX = startX-((ballDiameter)/2);
     this.ballY = startY-((ballDiameter)/2);
     this.ballColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255))); //RGB color
-    this.xVelocity = yDirection();
-    this.yVelocity = xDirection();
     this.xDelta = width/(width);//speed of ball
     this.yDelta = height/(height);//speed of ball
+    this.xVelocity = yDirection();
+    this.yVelocity = xDirection();
   }//end Ball hard coded constructor
   //cheatBall Constructor
-  Ball(float ballXLocal, float ballYLocal, float ballDiameterParameter, color ballColorParameter) {
+  Ball(float ballXLocal, float ballYLocal, float ballDiameterParameter, color ballColorParameter, float xVelocityLocal, float yVelocityLocal) {
     this.ballX = ballXLocal;
     this.ballY = ballYLocal;
     this.ballDiameter = ballDiameterParameter;
     this.ballColor = ballColorParameter;
+    this.xVelocity = xVelocityLocal;
+    this.yVelocity = yVelocityLocal;
   }//end cheatBall
   //Firework Constructor
   Ball(float ballXLocal, float ballYLocal, float gravityLocal) {
@@ -36,7 +39,7 @@ class Ball {
     this.ballX = ballXLocal;
     this.ballY = ballYLocal;
     this.ballColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255))); //RGB color
-    this.ballDiameter = random(width/25);
+    this.ballDiameter = random(firstBall.ballDiameter/1.1);
     this.xVelocity = random(-5, 5);
     this.yVelocity = random(-5, 5);
     gravity = gravityLocal;
@@ -56,15 +59,15 @@ class Ball {
     return yDirectionLocal;
   }//end yDirection
   void bounce() {
-    if (firstBall.ballX <= (ballDiameter/2) || firstBall.ballX >= (width)-(ballDiameter/2)) ballColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
-    if (ballY <= (ballDiameter/2) || ballY >= (height)-(ballDiameter/2)) ballColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
-    if (ballX <= (ballDiameter/2) || ballX >= (width)-(ballDiameter/2)) (xVelocity) *= -1;
-    if (ballY <= (ballDiameter/2) || ballY >= (height)-(ballDiameter/2)) (yVelocity) *= -1;
-    if (firstBall.ballX <= (ballDiameter) || firstBall.ballX >= (width)-(ballDiameter)) {
+    if (firstBall.ballX <= (ballDiameter/2) || firstBall.ballX >= (width)-(ballDiameter/2)) {
       for (int i=0; i < firework.length; i++) {
-        firework[i] = new Ball(int(ballX), int(ballY), int(0));//populating firework
+        firework[i] = new Ball(int(ballX), int(ballY), 0);//populating firework
       }
     }
+    if (firstBall.ballX <= (ballDiameter/2) || firstBall.ballX >= (width)-(ballDiameter/2)) ballColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
+    if (firstBall.ballY <= (ballDiameter/2) || firstBall.ballY >= (height)-(ballDiameter/2)) ballColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
+    if (ballX <= (ballDiameter/2) || ballX >= (width)-(ballDiameter/2)) (xVelocity) *= -1;
+    if (ballY <= (ballDiameter/2) || ballY >= (height)-(ballDiameter/2)) (yVelocity) *= -1;
   }//end bounce
   void ballDraw() {
     stroke(ballColor);
