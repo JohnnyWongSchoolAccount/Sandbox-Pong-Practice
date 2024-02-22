@@ -1,7 +1,7 @@
 # Sandbox-Pong-Practice
 ---
  - CS30 object orientated programming Project
- - The most complete version of the pong game is in 'ClassMetaphors'
+ - The current version of program is '04 Class Metaphors': https://github.com/JohnnyWongSchoolAccount/Sandbox-Pong-Practice/tree/main/04%20Class%20Metaphors/classMetaphors
  - Finalized Version: https://github.com/JohnnyWongSchoolAccount/Sandbox-Pong-Game-On
 
 # To Do List - Marking
