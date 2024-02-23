@@ -19,15 +19,9 @@ void setup() {
 //
 void draw() {
   background(backgroundColor);
-  for (int i=0; i < firework.length; i++) firework[i].ballDraw();//drawing multiple balls
-  if (firstBall.ballX < (2*(firstBall.ballDiameter)) || firstBall.ballX > ((width) - (2*(firstBall.ballDiameter))) || cheatBall.ballX < (2*(firstBall.ballDiameter)) || cheatBall.ballX > ((width) - (2*(firstBall.ballDiameter)))) {
-    netExplosion(firstBall.ballX, firstBall.ballY);
-  }
-  if (cheatBall.ballX < (2*(firstBall.ballDiameter)) || cheatBall.ballX > ((width) - (2*(firstBall.ballDiameter)))) {
-    netExplosion(cheatBall.ballX, cheatBall.ballY);
-  }
-  if (firstBall.disappear == true) {/*empty if*/} else firstBall.ballDraw(); 
-  cheatBall.ballDraw();
+  if (firstBall.disappear == true) {/*empty if*/} else firstBall.ballDraw(); explosion1();
+  if (cheatBall.disappear == true) {/*empty if*/} else cheatBall.ballDraw(); explosion2();
+  //for (int i=0; i < firework.length; i++) firework[i].ballDraw();//drawing multiple balls
 }//end draw
 //
 void keyPressed() {}//end keyPressed

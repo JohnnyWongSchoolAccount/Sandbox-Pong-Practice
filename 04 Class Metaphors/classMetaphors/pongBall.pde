@@ -59,13 +59,10 @@ class Ball {
     return yDirectionLocal;
   }//end yDirection
   void bounce() {
-    if (firstBall.ballX <= (ballDiameter/2) || firstBall.ballX >= (width)-(ballDiameter/2)) {
-      for (int i=0; i < firework.length; i++) {
-        firework[i] = new Ball(int(ballX), int(ballY), 0);//populating firework
-      }
-    }
-    if (firstBall.ballX <= (ballDiameter/2) || firstBall.ballX >= (width)-(ballDiameter/2)) ballColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
-    if (firstBall.ballY <= (ballDiameter/2) || firstBall.ballY >= (height)-(ballDiameter/2)) ballColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
+    if (firstBall.ballX <= (ballDiameter/2) || firstBall.ballX >= (width)-(ballDiameter/2)) firstBall.ballColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
+    if (firstBall.ballY <= (ballDiameter/2) || firstBall.ballY >= (height)-(ballDiameter/2)) firstBall.ballColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
+    if (cheatBall.ballX <= (ballDiameter/2) || cheatBall.ballX >= (width)-(ballDiameter/2)) cheatBall.ballColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
+    if (cheatBall.ballY <= (ballDiameter/2) || cheatBall.ballY >= (height)-(ballDiameter/2)) cheatBall.ballColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
     if (ballX <= (ballDiameter/2) || ballX >= (width)-(ballDiameter/2)) (xVelocity) *= -1;
     if (ballY <= (ballDiameter/2) || ballY >= (height)-(ballDiameter/2)) (yVelocity) *= -1;
   }//end bounce
