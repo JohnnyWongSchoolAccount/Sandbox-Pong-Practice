@@ -26,3 +26,4 @@
  - Random colors
  - Color changing ball
  - Click firework effect
+ - Click spawn second ball
