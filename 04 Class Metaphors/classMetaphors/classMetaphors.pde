@@ -24,7 +24,6 @@ void draw() {
   explosions();
   if (firstBall.disappear == true) {/*empty if*/} else firstBall.ballDraw();
   if (cheatBall.disappear == true) {/*empty if*/} else cheatBall.ballDraw();
-  //for (int i=0; i < firework.length; i++) firework[i].ballDraw();//drawing multiple balls
 }//end draw
 //
 void keyPressed() {}//end keyPressed
@@ -35,27 +34,19 @@ void mousePressed() {
   cheatBallFlag = true;
 }//end mousepressed
 //
-void explosions() {
-  if (!cheatBallFlag) {
-    if (firstBall.ballX <= (firstBall.ballDiameter/2) || firstBall.ballX >= (width)-(firstBall.ballDiameter/2)) {
-      for (int i=0; i < firework.length; i++) {
-        firework[i] = new Ball(firstBall.ballX, firstBall.ballY, 0.5);
-      }
-    }
-  } else explosion2();
-}//end explosion1
-void explosion2() {
+void explosions() { //firework effect when goal region hit
   if (firstBall.ballX <= (firstBall.ballDiameter/2) || firstBall.ballX >= (width)-(firstBall.ballDiameter/2)) {
-    for (int i=0; i < firework.length; i++) { 
-      firework[i] = new Ball(firstBall.ballX, firstBall.ballY, 0.5);
+    for (int i=0; i < firework.length; i++) 
+    firework[i] = new Ball(firstBall.ballX, firstBall.ballY, 0.5); //drawing multiple balls
+  }
+  if (cheatBallFlag) {
+    if (cheatBall.ballX <= (cheatBall.ballDiameter/2) || cheatBall.ballX >= (width)-(cheatBall.ballDiameter/2)) {
+      for (int i=0; i < firework.length; i++) 
+      firework[i] = new Ball(cheatBall.ballX, cheatBall.ballY, 0.5); //drawing multiple balls
     }
   }
-  if (cheatBall.ballX <= (cheatBall.ballDiameter/2) || cheatBall.ballX >= (width)-(cheatBall.ballDiameter/2)) {
-    for (int i=0; i < firework.length; i++) { 
-      firework[i] = new Ball(cheatBall.ballX, cheatBall.ballY, 0.5);
-    }
-  }
-}//end explosion2
+}//end explosions
+//
 void ballCollisions() {
   /*
   if (ballX < (ballDiameter/2) || ballX > (width)-(ballDiameter/2)) ballColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
