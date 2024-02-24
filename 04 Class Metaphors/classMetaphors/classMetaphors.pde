@@ -22,8 +22,8 @@ void draw() {
   background(backgroundColor);
   for (int i=0; i < firework.length; i++) firework[i].ballDraw();//drawing multiple balls
   explosions();
-  if (firstBall.disappear == true) {/*empty if*/} else firstBall.ballDraw();
-  if (cheatBall.disappear == true) {/*empty if*/} else cheatBall.ballDraw();
+  if (firstBall.disappear) {/*empty if*/} else firstBall.ballDraw();
+  if (cheatBall.disappear) {/*empty if*/} else cheatBall.ballDraw();
 }//end draw
 //
 void keyPressed() {}//end keyPressed
