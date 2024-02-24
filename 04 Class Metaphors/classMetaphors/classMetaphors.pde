@@ -1,7 +1,7 @@
 //Global Variables and objects
 Ball firstBall; //Both halfs of Constructor
-Ball[] firework = new Ball[25];//creates an explosion of balls that fall with gravity
 Ball cheatBall;//appears when clicked
+Ball[] firework = new Ball[10];//generates multiple balls that fall with gravity
 color backgroundColor;
 color pongTableColor = 255;
 //
@@ -11,16 +11,14 @@ void setup() {
   Automatically adjusts for screen rotaction or change*/
   firstBall = new Ball();
   cheatBall = new Ball(width*-1, height*-1, firstBall.ballDiameter, firstBall.ballColor, firstBall.xVelocity, firstBall.yVelocity);
+  for (int i=0; i < firework.length; i++) firework[i] = new Ball(width*-1, height*-1, (1/2));//populating firework
   firstBall.disappear = false;
-  for (int i=0; i < firework.length; i++) {//creating balls
-    firework[i] = new Ball(width*-1, height*-1, (1/2));//populating firework
-  }
   backgroundColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
 }//end setup
 //
 void draw() {
   background(backgroundColor);
-  for (int i=0; i < firework.length; i++) firework[i].ballDraw();//drawing multiple balls
+  for (int i=0; i < firework.length; i++) firework[i].ballDraw(); //drawing multiple balls
   explosions();
   if (firstBall.disappear) {/*empty if*/} else firstBall.ballDraw();
   if (cheatBall.disappear) {/*empty if*/} else cheatBall.ballDraw();
@@ -40,10 +38,10 @@ void explosions() { //firework effect when goal region hit
     firework[i] = new Ball(firstBall.ballX, firstBall.ballY, 0.5); //drawing multiple balls
   }
   if (!cheatBall.disappear) {
-  if (cheatBall.ballX <= (cheatBall.ballDiameter/2) || cheatBall.ballX >= (width)-(cheatBall.ballDiameter/2)) {
-    for (int i=0; i < firework.length; i++) 
-    firework[i] = new Ball(cheatBall.ballX, cheatBall.ballY, 0.5); //drawing multiple balls
-  }
+    if (cheatBall.ballX <= (cheatBall.ballDiameter/2) || cheatBall.ballX >= (width)-(cheatBall.ballDiameter/2)) {
+      for (int i=0; i < firework.length; i++) 
+      firework[i] = new Ball(cheatBall.ballX, cheatBall.ballY, 0.5); //drawing multiple balls
+    }
   }
 }//end explosions
 //
