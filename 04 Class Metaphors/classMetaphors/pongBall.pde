@@ -6,7 +6,7 @@ class Ball {
   float xVelocity, yVelocity;
   float xDelta, yDelta;
   float gravity = 0.0;
-  boolean disappear = false;
+  boolean disappear = true;
   color ballColor;
   //Ball Constructor
   Ball() {
