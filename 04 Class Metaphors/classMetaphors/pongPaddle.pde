@@ -1,7 +1,7 @@
 /* known ERRORs
  - To be implemented
 */
-class Paddle {
+ class Paddle {
   //Global Variables
   float playAreaWidth, playAreaHeight, playAreaX, playAreaY;
   float knotX, knotY, knotWidth, knotHeight;
@@ -9,7 +9,9 @@ class Paddle {
   color paddleColor
   //
   Paddle(float startPosition) {
-    paddleX = ;
+    if () {}
+    if () {}
+    paddleX = knotX;
     paddleY = ;
     paddleWidth = ;
     paddleHeight = ;
