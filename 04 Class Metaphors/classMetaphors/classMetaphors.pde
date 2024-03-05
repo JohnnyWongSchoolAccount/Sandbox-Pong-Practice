@@ -11,8 +11,8 @@ void setup() {
   Automatically adjusts for screen rotaction or change*/
   firstBall = new Ball();
   cheatBall = new Ball(width*-1, height*-1, firstBall.ballDiameter, firstBall.ballColor, firstBall.xVelocity, firstBall.yVelocity);
-  sexyPaddle = new Paddle( 0 );
-  cutePaddle = new Paddle( width );
+  firstPaddle = new Paddle( 0 );
+  secondPaddle = new Paddle( width );
   for (int i=0; i < firework.length; i++) firework[i] = new Ball(width*-1, height*-1, (1/2));//populating firework
   firstBall.disappear = false;
   backgroundColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
