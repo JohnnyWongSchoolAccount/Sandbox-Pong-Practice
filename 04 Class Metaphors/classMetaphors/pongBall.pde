@@ -13,7 +13,7 @@ class Ball {
     //code for all balls
     int startX = (width/2);//middle of canvas
     int startY = (height/2);//middle of canvas
-    int referentMeasures = (width<height) ? (width):(height) ; //ternary Operator
+    int referentMeasures = (width<height) ? (width):(height) ; //ternary Operator = chooses the smaller value
     //object variables //this is "new Ball()"
     this.ballDiameter = referentMeasures/20;
     this.ballX = startX-((ballDiameter)/2);

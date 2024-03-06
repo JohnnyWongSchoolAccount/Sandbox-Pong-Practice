@@ -12,9 +12,9 @@ void setup() {
   Automatically adjusts for screen rotaction or change*/
   firstBall = new Ball();
   cheatBall = new Ball(width*-1, height*-1, firstBall.ballDiameter, firstBall.ballColor, firstBall.xVelocity, firstBall.yVelocity);
-  firstPaddle = new Paddle( 0 );
-  secondPaddle = new Paddle( width );
   for (int i=0; i < firework.length; i++) firework[i] = new Ball(width*-1, height*-1, (1/2));//populating firework
+  firstPaddle = new Paddle( 0, firstBall.ballDiameter );
+  secondPaddle = new Paddle( width, firstBall.ballDiameter );
   firstBall.disappear = false;
   backgroundColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
 }//end setup
@@ -25,6 +25,8 @@ void draw() {
   explosions();
   if (firstBall.disappear) {/*empty if*/} else firstBall.ballDraw();
   if (cheatBall.disappear) {/*empty if*/} else cheatBall.ballDraw();
+  firstPaddle.drawPaddle();
+  secondPaddle.drawPaddle();
 }//end draw
 //
 void keyPressed() {
@@ -34,7 +36,7 @@ void keyPressed() {
 //
 void mousePressed() {
   for (int i=0; i < firework.length; i++) firework[i] = new Ball(int(mouseX), int(mouseY), 0.5);//populating firework
-  cheatBall = new Ball(mouseX, mouseY, firstBall.ballDiameter, firstBall.ballColor, firstBall.xVelocity, firstBall.yVelocity);
+  cheatBall = new Ball(mouseX, mouseY, firstBall.ballDiameter, firstBall.ballColor, firstBall.xVelocity, firstBall.yVelocity);//initiates after mousePressed
 }//end mousepressed
 //
 void explosions() { //firework effect when goal region hit
