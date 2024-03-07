@@ -21,17 +21,23 @@ void setup() {
 //
 void draw() {
   background(backgroundColor);
+  firstPaddle.drawPaddle();
+  secondPaddle.drawPaddle();
+  firstPaddle.paddleMove();
+  secondPaddle.paddleMove();
   for (int i=0; i < firework.length; i++) firework[i].ballDraw(); //drawing multiple balls
   explosions();
   if (firstBall.disappear) {/*empty if*/} else firstBall.ballDraw();
   if (cheatBall.disappear) {/*empty if*/} else cheatBall.ballDraw();
-  firstPaddle.drawPaddle();
-  secondPaddle.drawPaddle();
 }//end draw
 //
 void keyPressed() {
   if (key == '1') firstBall.disappear = true;
   if (key == '2') cheatBall.disappear = true;
+  if (key == 'w' || key == 'W') firstPaddle.paddleUp = true;
+  if (key == 's' || key == 'S') firstPaddle.paddleDown = true; 
+  if (key == CODED & keyCode == UP) secondPaddle.paddleUp = true;
+  if (key == CODED & keyCode == DOWN) secondPaddle.paddleDown = true;
 }//end keyPressed
 //
 void mousePressed() {
