@@ -33,18 +33,35 @@
     fill(0);
   }//end drawPaddle
   void paddleMove() {
-    if (paddleUp) {paddleUp();}
-    if (paddleDown) {paddleDown();}
+    if (paddleUp) paddleUp();
+    if (paddleDown) paddleDown();
   }
   void paddleUp() {
     paddleY -= (paddleTravel);//moving up
     if (paddleY < playAreaY) paddleY = playAreaY;//error catch: will not go off screen
-    paddleUp = false;
   }//paddleUp
   void paddleDown() {
     paddleY += (paddleTravel);//moving down
     if (paddleY > playAreaY+playAreaHeight-paddleHeight) paddleY = playAreaY+playAreaHeight-paddleHeight;//error catch: will not go off screen
-    paddleDown = false;
   }//end paddleDown
+  void paddleKeyPressedWASD() {
+    if (key == 'w' || key == 'W') firstPaddle.paddleUp = true;
+    if (key == 's' || key == 'S') firstPaddle.paddleDown = true; 
+  }
+  void paddleKeyPressedARROWKEYS() {
+    if (key == CODED & keyCode == UP) secondPaddle.paddleUp = true;
+    if (key == CODED & keyCode == DOWN) secondPaddle.paddleDown = true;
+  }
+  void paddleKeyReleasedWSAD() {
+    if (key == 'w' || key == 'W') firstPaddle.paddleUp = false;
+    if (key == 's' || key == 'S') firstPaddle.paddleDown = false; 
+  }
+  void paddleKeyReleasedARROWKEYS() {
+    if (key == CODED & keyCode == UP) secondPaddle.paddleUp = false;
+    if (key == CODED & keyCode == DOWN) secondPaddle.paddleDown = false;
+  }
+  void playAreaYUpdate() {
+    
+  }
 }//end Paddle
 //end pongPaddle

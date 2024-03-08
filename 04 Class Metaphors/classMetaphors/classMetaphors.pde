@@ -34,11 +34,13 @@ void draw() {
 void keyPressed() {
   if (key == '1') firstBall.disappear = true;
   if (key == '2') cheatBall.disappear = true;
-  if (key == 'w' || key == 'W') firstPaddle.paddleUp = true;
-  if (key == 's' || key == 'S') firstPaddle.paddleDown = true; 
-  if (key == CODED & keyCode == UP) secondPaddle.paddleUp = true;
-  if (key == CODED & keyCode == DOWN) secondPaddle.paddleDown = true;
+  firstPaddle.paddleKeyPressedWASD();
+  secondPaddle.paddleKeyPressedARROWKEYS();
 }//end keyPressed
+void keyReleased() {
+  firstPaddle.paddleKeyReleasedWSAD();
+  secondPaddle.paddleKeyReleasedARROWKEYS();
+}
 //
 void mousePressed() {
   for (int i=0; i < firework.length; i++) firework[i] = new Ball(int(mouseX), int(mouseY), 0.5);//populating firework
