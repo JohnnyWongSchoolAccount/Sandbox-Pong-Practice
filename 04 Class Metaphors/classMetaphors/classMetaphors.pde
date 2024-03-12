@@ -29,6 +29,8 @@ void draw() {
   explosions();
   if (firstBall.disappear) {/*empty if*/} else firstBall.ballDraw();
   if (cheatBall.disappear) {/*empty if*/} else cheatBall.ballDraw();
+  //float playAreaYLocal, float playAreaHeightLocal, float playAreaWidthLocal, float playAreaXLocal, float paddleXLocal, float paddleYLocal, float paddleWidthLocal, float paddleHeightLocal
+  firstBall.collisionsUpdate(firstPaddle.playAreaY, firstPaddle.playAreaHeight, firstPaddle.playAreaWidth, firstPaddle.playAreaX, firstPaddle.paddleX, firstPaddle.paddleY, firstPaddle.paddleWidth, firstPaddle.paddleHeight, firstPaddle.paddleWidth, secondPaddle.paddleWidth, firstPaddle.paddleHeight, secondPaddle.paddleHeight);
 }//end draw
 //
 void keyPressed() {

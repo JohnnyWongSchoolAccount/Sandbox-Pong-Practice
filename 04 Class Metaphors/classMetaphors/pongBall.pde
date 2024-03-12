@@ -6,6 +6,8 @@ class Ball {
   float xVelocity, yVelocity;
   float xDelta, yDelta;
   float gravity = 0.0;
+  float playAreaY, playAreaX, playAreaHeight, playAreaWidth;
+  float paddleX, paddleY, paddleWidth, paddleHeight;
   boolean disappear = true;
   color ballColor;
   //Ball Constructor
@@ -80,5 +82,14 @@ class Ball {
     //for (int i=0; i < firework.length; i++) firework[i].ballDiameter -= (ballDiameter/4);
     bounce();
   }//end animatingMovement
+  void collisionsUpdate(float playAreaYLocal, float playAreaHeightLocal, float playAreaWidthLocal, float playAreaXLocal, float paddleXLocal, float paddleYLocal, float paddleWidthLocal, float paddleHeightLocal, float firstPaddleX, float secondPaddleX, float firstPaddleY, float secondPaddleY ) {
+    playAreaY = playAreaYLocal;
+    playAreaHeight = playAreaHeightLocal;
+    playAreaWidth = playAreaXLocal + playAreaWidthLocal;
+    paddleX = ( paddleXLocal < playAreaWidth/2) ? firstPaddleX : secondPaddleX;
+    paddleY = ( paddleYLocal < playAreaWidth/2) ? firstPaddleY : secondPaddleY;
+    paddleWidth = paddleWidthLocal;
+    paddleHeight = paddleHeightLocal;
+  }
 }//end Ball
 //end pongBall

@@ -60,8 +60,5 @@
     if (key == CODED & keyCode == UP) secondPaddle.paddleUp = false;
     if (key == CODED & keyCode == DOWN) secondPaddle.paddleDown = false;
   }
-  void playAreaYUpdate() {
-    
-  }
 }//end Paddle
 //end pongPaddle
