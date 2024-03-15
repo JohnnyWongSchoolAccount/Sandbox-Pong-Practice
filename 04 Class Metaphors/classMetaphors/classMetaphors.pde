@@ -29,8 +29,8 @@ void draw() {
   explosions();
   if (firstBall.disappear) {/*empty if*/} else firstBall.ballDraw();
   if (cheatBall.disappear) {/*empty if*/} else cheatBall.ballDraw();
-  //float playAreaYLocal, float playAreaHeightLocal, float playAreaWidthLocal, float playAreaXLocal, float paddleXLocal, float paddleYLocal, float paddleWidthLocal, float paddleHeightLocal
   firstBall.collisionsUpdate(firstPaddle.playAreaY, firstPaddle.playAreaHeight, firstPaddle.playAreaWidth, firstPaddle.playAreaX, firstPaddle.paddleX, firstPaddle.paddleY, firstPaddle.paddleWidth, firstPaddle.paddleHeight, firstPaddle.paddleWidth, secondPaddle.paddleWidth, firstPaddle.paddleHeight, secondPaddle.paddleHeight);
+  //println(firstPaddle.playAreaY, firstPaddle.playAreaHeight, firstPaddle.playAreaWidth, firstPaddle.playAreaX, firstPaddle.paddleX, firstPaddle.paddleY, firstPaddle.paddleWidth, firstPaddle.paddleHeight, firstPaddle.paddleX, secondPaddle.paddleX, firstPaddle.paddleY, secondPaddle.paddleY);
 }//end draw
 //
 void keyPressed() {
@@ -45,13 +45,13 @@ void keyReleased() {
 }
 //
 void mousePressed() {
-  for (int i=0; i < firework.length; i++) firework[i] = new Ball(int(mouseX), int(mouseY), 0.5);//populating firework
+  //for (int i=0; i < firework.length; i++) firework[i] = new Ball(int(mouseX), int(mouseY), 0.5);//populating firework
   cheatBall = new Ball(mouseX, mouseY, firstBall.ballDiameter, firstBall.ballColor, firstBall.xVelocity, firstBall.yVelocity);//initiates after mousePressed
 }//end mousepressed
 //
 void explosions() { //firework effect when goal region hit
   if (mousePressed) cheatBall.disappear  = false;
-  if (firstBall.ballX <= (firstBall.ballDiameter/2) || firstBall.ballX >= (width)-(firstBall.ballDiameter/2)) {
+  /*if (firstBall.ballX <= (firstBall.ballDiameter/2) || firstBall.ballX >= (width)-(firstBall.ballDiameter/2)) {
     for (int i=0; i < firework.length; i++) 
     firework[i] = new Ball(firstBall.ballX, firstBall.ballY, 0.5); //drawing multiple balls
   }
@@ -60,7 +60,7 @@ void explosions() { //firework effect when goal region hit
       for (int i=0; i < firework.length; i++) 
       firework[i] = new Ball(cheatBall.ballX, cheatBall.ballY, 0.5); //drawing multiple balls
     }
-  }
+  }*/
 }//end explosions
 //
 void ballCollisions() {

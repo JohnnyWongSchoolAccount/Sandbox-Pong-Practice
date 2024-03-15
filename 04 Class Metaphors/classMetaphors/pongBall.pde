@@ -9,6 +9,7 @@ class Ball {
   float playAreaY, playAreaX, playAreaHeight, playAreaWidth;
   float paddleX, paddleY, paddleWidth, paddleHeight;
   boolean disappear = true;
+  boolean inRange;
   color ballColor;
   //Ball Constructor
   Ball() {
@@ -66,7 +67,7 @@ class Ball {
     if (cheatBall.ballX <= (ballDiameter/2) || cheatBall.ballX >= (width)-(ballDiameter/2)) cheatBall.ballColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
     if (cheatBall.ballY <= (ballDiameter/2) || cheatBall.ballY >= (height)-(ballDiameter/2)) cheatBall.ballColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
     if (ballX <= (ballDiameter/2) || ballX >= (width)-(ballDiameter/2)) (xVelocity) *= -1;
-    if (ballY <= (ballDiameter/2) || ballY >= (height)-(ballDiameter/2)) (yVelocity) *= -1;
+    if (ballY <= ((firstPaddle.playAreaY)+(ballDiameter/2)) || ballY >= ((height)-((ballDiameter/2)+(firstPaddle.playAreaY)))) (yVelocity) *= -1;
   }//end bounce
   void ballDraw() {
     stroke(ballColor);
@@ -90,6 +91,34 @@ class Ball {
     paddleY = ( paddleYLocal < playAreaWidth/2) ? firstPaddleY : secondPaddleY;
     paddleWidth = paddleWidthLocal;
     paddleHeight = paddleHeightLocal;
-  }
+    println(firstBall.inRange);
+    println(cheatBall.inRange);
+    println(secondPaddle.paddleX);
+    println(firstPaddle.paddleX);
+    println(firstBall.ballX);
+    firstBall.inRange();
+    if (firstBall.inRange) { firstBall.collisionsPaddle(); } else {}
+    cheatBall.inRange();
+    if (cheatBall.inRange) { cheatBall.collisionsPaddle(); } else {}
+  }//collisionsUpdate
+  void collisionsPaddle() {
+    if (ballY <= firstPaddle.paddleY + firstPaddle.paddleHeight && ballY >= firstPaddle.paddleY){
+      if (ballX <= (firstPaddle.paddleX)+((secondPaddle.paddleWidth)*2)) {
+        xVelocity *= -1;
+        firstPaddle.paddleColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
+      }
+    }
+    if (ballY <= secondPaddle.paddleY + secondPaddle.paddleHeight && ballY >= secondPaddle.paddleY){
+      if (ballX >= (secondPaddle.paddleX)-(secondPaddle.paddleWidth)) {
+        xVelocity *= -1;
+        secondPaddle.paddleColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
+      }
+    }
+  }//end collisonDebug
+  void inRange() {
+    if (ballX >= firstPaddle.paddleX-firstPaddle.paddleWidth && ballX <= secondPaddle.paddleX) {
+      this.inRange = true;
+    } else this.inRange = false;
+  }//end inRange
 }//end Ball
 //end pongBall
