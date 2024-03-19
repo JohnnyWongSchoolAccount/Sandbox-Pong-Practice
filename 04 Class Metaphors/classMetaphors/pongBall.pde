@@ -102,7 +102,7 @@ class Ball {
     if (cheatBall.inRange) { cheatBall.collisionsPaddle(); } else {}
   }//collisionsUpdate
   void collisionsPaddle() {
-    if (ballX >= firstPaddle.paddleX && ballX < firstPaddle.paddleX+firstPaddle.paddleWidth && ballY >= firstPaddle.paddleY && ballY <= firstPaddle.paddleY+firstPaddle.paddleHeight) {
+    if (ballX+ballDiameter >= firstPaddle.paddleX && ballX <= firstPaddle.paddleX+firstPaddle.paddleWidth && ballY >= firstPaddle.paddleY && ballY <= firstPaddle.paddleY+firstPaddle.paddleHeight) {
       firstPaddle.paddleColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
       ballX = firstPaddle.paddleX + firstPaddle.paddleWidth;
       xVelocity *= -1;

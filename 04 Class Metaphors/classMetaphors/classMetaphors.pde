@@ -2,7 +2,7 @@
 Ball firstBall; //Both halfs of Constructor
 Ball cheatBall;//appears when clicked
 Ball[] firework = new Ball[10];//generates multiple balls that fall with gravity
-Paddle firstPaddle, secondPaddle;
+Paddle pongPlayArea, firstPaddle, secondPaddle;
 color backgroundColor;
 color pongTableColor = 255;
 //
@@ -13,6 +13,7 @@ void setup() {
   firstBall = new Ball();
   cheatBall = new Ball(width*-1, height*-1, firstBall.ballDiameter, firstBall.ballColor, firstBall.xVelocity, firstBall.yVelocity);
   for (int i=0; i < firework.length; i++) firework[i] = new Ball(width*-1, height*-1, (1/2));//populating firework
+  pongPlayArea = new Paddle();
   firstPaddle = new Paddle( 0, firstBall.ballDiameter );
   secondPaddle = new Paddle( width, firstBall.ballDiameter );
   firstBall.disappear = false;
@@ -21,6 +22,7 @@ void setup() {
 //
 void draw() {
   background(backgroundColor);
+  pongPlayArea.drawPlayArea();
   firstPaddle.drawPaddle();
   secondPaddle.drawPaddle();
   firstPaddle.paddleMove();
