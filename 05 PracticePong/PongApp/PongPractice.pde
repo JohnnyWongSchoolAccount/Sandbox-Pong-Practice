@@ -48,7 +48,7 @@ void mousePressedPongOn() {
     cheatBall = new Ball(mouseX, mouseY, firstBall.ballDiameter, firstBall.ballColor, firstBall.xVelocity, firstBall.yVelocity);//initiates after mousePressed
     //for (int i=0; i < firework.length; i++) firework[i] = new Ball(int(mouseX), int(mouseY), 0.5);//populating firework
   }
-  if ( mouseX>=pongPause.buttonX && mouseX<=pongPause.buttonX+pongPause.buttonWidth && mouseY>=pongPause.buttonY && mouseY<=pongPause.buttonY+pong.buttonHeight )
+  if ( mouseX>=pongPause.buttonX && mouseX<=pongPause.buttonX+pongPause.buttonWidth && mouseY>=pongPause.buttonY && mouseY<=pongPause.buttonY+pongPause.buttonHeight )
   { pongOnOffSwitch(); }
 }//draw mousePressedPongOn
 void keyPressedPongOn() {
@@ -59,7 +59,7 @@ void keyPressedPongOn() {
   secondPaddle.paddleKeyPressedARROWKEYS();//connects right paddle movement to Arrow keys
 }//end keyPressedPongOn
 void UIpong() {
-  if ( mouseX>=pongPause.buttonX && mouseX<=pongPause.buttonX+pongPause.buttonWidth && mouseY>=pongPause.buttonY && mouseY<=pongPause.buttonY+pong.buttonHeight )
+  if ( mouseX>=pongPause.buttonX && mouseX<=pongPause.buttonX+pongPause.buttonWidth && mouseY>=pongPause.buttonY && mouseY<=pongPause.buttonY+pongPause.buttonHeight )
   {fill(hoverOver);} else {fill(buttonColor);}
   pongPause.drawButtons();
   UIpongText("PAUSE", "PLAY");

@@ -12,8 +12,8 @@ class Paddle {
   Paddle(float startPositionParameter, float ballDiameterParameter) {
     knotWidth = (ballDiameterParameter*3);
     this.paddleWidth = (ballDiameterParameter/2); //Ball Radius
-    playAreaY = height/10;//smallest Y value for paddle movement
-    playAreaHeight = (height*7)/10;
+    playAreaY = pongPlayArea.playAreaY;//smallest Y value for paddle movement
+    playAreaHeight = pongPlayArea.playAreaHeight;
     if ( startPositionParameter == (width/10) ) knotX = startPositionParameter; //Adding to the knotX
     if ( startPositionParameter == (((width*9)/10)) ) knotX = startPositionParameter - (knotWidth*2) - paddleWidth; //Subtracting the knotX
     this.paddleX = (knotX) + (knotWidth); //netX has two values, fix ERROR

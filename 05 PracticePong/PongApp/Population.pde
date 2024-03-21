@@ -1,6 +1,5 @@
 //Global Variables
-MenuButtons pong;
-Buttons pongPause;
+Buttons pongPause, pong;
 float refMeasure;
 //color
 color hoverOver = #8D9EFF;
@@ -20,28 +19,20 @@ class Buttons {
     this.buttonWidth = widthVariables;
     this.buttonHeight = heightVariables;
   }//end ButtonsConstructor
-  void drawButtons() {
-    strokeDesign();
-    rect(buttonX, buttonY, buttonWidth, buttonHeight);
-  }
-}//end buttons class
-class MenuButtons {
-  //Global Variables
-  float buttonX, buttonY, buttonWidth, buttonHeight;
-  MenuButtons( float x ) {
+  Buttons( float x ) {//populating the menu buttons
     this.buttonWidth = width/6;
     this.buttonHeight = height/8;
     this.buttonX = x;
     this.buttonY = (height-(buttonHeight + refMeasure));
   }//end MenuButtons Constuctor
-  void drawMenuButtons() {
+  void drawButtons() {
     strokeDesign();
     rect(buttonX, buttonY, buttonWidth, buttonHeight);
   }
-}//end MenuButtons class
+}//end buttons class
 void strokeDesign() {
   stroke(strokeColor);
   strokeWeight((refMeasure*2)/7);
   strokeJoin(ROUND);
-}
+}//end strokeDesign
 //end Population

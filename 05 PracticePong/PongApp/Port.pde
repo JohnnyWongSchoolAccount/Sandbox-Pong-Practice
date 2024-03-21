@@ -3,7 +3,7 @@ boolean portOn = true;//turns menu screen on and off
 //
 void drawPort() { 
   if (portOn) drawPortOn();
-  pong = new MenuButtons(refMeasure);
+  pong = new Buttons(refMeasure);
   prerequisites();
 }//end drawPort
 void keyPressedPort() {
@@ -25,7 +25,7 @@ void prerequisites() {
 void UIuniversal() { //pongButtonX, pongButtonY, pongButtonWidth, pongButtonHeight
   if ( mouseX>=pong.buttonX && mouseX<=pong.buttonX+pong.buttonWidth && mouseY>=pong.buttonY && mouseY<=pong.buttonY+pong.buttonHeight )
   {fill(hoverOver);} else {fill(buttonColor);}
-  pong.drawMenuButtons();
+  pong.drawButtons();
   UIpageText("Menu", "Pong");
 }//end UImousePressed
 void UIpageText(String portText, String pongText) {
