@@ -3,7 +3,8 @@ boolean portOn = true;//turns menu screen on and off
 //
 void drawPort() { 
   if (portOn) drawPortOn();
-  pong = new Buttons(refMeasure);
+  pong = new Rectangle(refMeasure);
+  quit = new Rectangle(width-refMeasure*4, 0, refMeasure*4, refMeasure*5/3);
   prerequisites();
 }//end drawPort
 void keyPressedPort() {
@@ -11,8 +12,10 @@ void keyPressedPort() {
   if (key == '9') port();
 }//end keyPressedPort
 void mousePressedPort() {
-  if ( mouseX>=pong.buttonX && mouseX<=pong.buttonX+pong.buttonWidth && mouseY>=pong.buttonY && mouseY<=pong.buttonY+pong.buttonHeight )
+  if ( mouseX>=pong.rectX && mouseX<=pong.rectX+pong.rectWidth && mouseY>=pong.rectY && mouseY<=pong.rectY+pong.rectHeight )
   pong();
+  if ( mouseX>=quit.rectX && mouseX<=quit.rectX+quit.rectWidth && mouseY>=quit.rectY && mouseY<=quit.rectY+quit.rectHeight )
+  exit();
 }//end mousePressedPort
 //
 void drawPortOn() {
@@ -23,18 +26,19 @@ void prerequisites() {
   UIuniversal();
 }//end prerequisites
 void UIuniversal() { //pongButtonX, pongButtonY, pongButtonWidth, pongButtonHeight
-  if ( mouseX>=pong.buttonX && mouseX<=pong.buttonX+pong.buttonWidth && mouseY>=pong.buttonY && mouseY<=pong.buttonY+pong.buttonHeight )
-  {fill(hoverOver);} else {fill(buttonColor);}
-  pong.drawButtons();
-  UIpageText("Menu", "Pong");
+  pong.button(#8D9EFF, #CCC1FF, (refMeasure*2)/7);
+  UIportText("Menu", "Pong");
+  quit.button(#ff1919, #00b530, 0);
+  quit.rectText("quit");
 }//end UImousePressed
-void UIpageText(String portText, String pongText) {
+void UIportText(String text, String text1) {
   if (pongOn) {
-    drawText( height, ink, CENTER, CENTER, Font, textSpace+portText+textSpace, pong.buttonX, pong.buttonY, pong.buttonWidth, pong.buttonHeight);
+    pong.buttonBooleanText(true, text, text1);
   } else {
-    drawText( height, ink, CENTER, CENTER, Font, textSpace+pongText+textSpace, pong.buttonX, pong.buttonY, pong.buttonWidth, pong.buttonHeight);
+    pong.buttonBooleanText(false, text, text1);
   }
-}//end UIpageText
+  
+}//end UIportText
 void pong() {
   if (pongOn) {
     pongOn = false;

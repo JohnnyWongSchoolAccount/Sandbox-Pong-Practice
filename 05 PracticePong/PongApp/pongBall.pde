@@ -9,7 +9,7 @@ class Ball {
   float gravity = 0.0;
   float playAreaY, playAreaX, playAreaHeight, playAreaWidth;
   float paddleX, paddleY, paddleWidth, paddleHeight;
-  boolean disappear = true;
+  boolean disappear;
   boolean inRange;
   color ballColor;
   //Ball Constructor
@@ -64,9 +64,7 @@ class Ball {
   }//end yDirection
   void bounce() {
     if (firstBall.ballX <= ((ballDiameter/2)+(width/10)) || firstBall.ballX >= ((width*9)/10)-(ballDiameter/2)) firstBall.ballColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
-    //if (firstBall.ballY <= ((firstPaddle.playAreaY)+(ballDiameter/2)) || firstBall.ballY >= (height*8/10)-(ballDiameter/2)) firstBall.ballColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
     if (cheatBall.ballX <= ((ballDiameter/2)+(width/10)) || cheatBall.ballX >= ((width*9)/10)-(ballDiameter/2)) cheatBall.ballColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
-    //if (cheatBall.ballY <= ((firstPaddle.playAreaY)+(ballDiameter/2)) || cheatBall.ballY >= (height*8/10)-(ballDiameter/2)) cheatBall.ballColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
     if (ballX <= ((ballDiameter/2)+(width/10)) || ballX >= ((width*9)/10)-(ballDiameter/2)) (xVelocity) *= -1;
     if (ballY <= ((firstPaddle.playAreaY)+(ballDiameter/2)) || ballY >= (height*8/10)-(ballDiameter/2)) (yVelocity) *= -1;
   }//end bounce
@@ -114,5 +112,16 @@ class Ball {
       this.inRange = true;
     } else this.inRange = false;
   }//end inRange
+  void winCondition() {
+    if (ballX <= ((ballDiameter/2)+(width/10)) || ballX >= ((width*9)/10)-(ballDiameter/2)) {
+      if (ballX <= ((ballDiameter/2)+(width/10))) {
+        scoreRight++;
+        pongGameOn = false;
+      } else  {
+        scoreLeft++;
+        pongGameOn = false;
+      }
+    }
+  }//end winCondition
 }//end Ball
 //end pongBall

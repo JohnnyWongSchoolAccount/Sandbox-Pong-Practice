@@ -2,7 +2,7 @@
 //
 void setup() {
   size( 700, 400 );//width and height of canvas //fullscreen(); = size(displayWidth, displayHeight);
-  setupPong();
+  setupPong();//pongPractice subPrgram
 }//end setup
 void draw() {
   setupText();//Text subProgram

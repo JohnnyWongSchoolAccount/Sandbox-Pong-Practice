@@ -7,7 +7,7 @@ class Paddle {
   float paddleTravel;
   boolean paddleUp = false, paddleDown = false;//keyPressed in draw
   color paddleColor;
-  color playAreaColor = buttonColor;
+  color playAreaColor = #CCC1FF;
   //
   Paddle(float startPositionParameter, float ballDiameterParameter) {
     knotWidth = (ballDiameterParameter*3);
