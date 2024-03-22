@@ -6,14 +6,14 @@
 
 # To Do List - Marking
 ---
- - Main menu GUI **WIP**
- - Playable paddles **WIP**
- - Functioning ball **WIP**
- - Scoreboard **WIP**
+ - Main menu GUI
+ - Playable paddles
+ - Functioning ball
+ - Scoreboard
  - Sound **WIP**
- - Text **WIP**
+ - Text
  - Easy, Medium and Impossible single player algorithms **WIP**
- - Two Player functionality **WIP**
+ - Two Player functionality
 # Easter Eggs Pong Features
  ---
  - Power ups **WIP**
