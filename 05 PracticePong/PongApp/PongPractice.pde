@@ -13,6 +13,8 @@ void setupPong() {
   pongPause = new Rectangle(refMeasure, height/10, height/8, height/14);
   scoreKeepLeft = new Rectangle(refMeasure, pongPause.rectY+pongPause.rectHeight+(refMeasure/2), height/8, height/8);
   scoreKeepRight = new Rectangle(refMeasure, scoreKeepLeft.rectY+scoreKeepLeft.rectHeight+(refMeasure/2), height/8, height/8);
+  scoreKeepReset = new Rectangle(refMeasure, scoreKeepRight.rectY+scoreKeepRight.rectHeight+(refMeasure/2), height/8, height/14);
+  pongGameReset = new Rectangle((refMeasure*2)+(width/6));
   firstBall = new Ball();//creates first ball
   cheatBall = new Ball(width*-1, height*-1, firstBall.ballDiameter, firstBall.ballColor, firstBall.xVelocity, firstBall.yVelocity);//creates click ball
   for (int i=0; i < firework.length; i++) firework[i] = new Ball(width*-1, height*-1, (1/2));//populating firework
@@ -57,14 +59,32 @@ void mousePressedPongOn() {
   }
   if ( mouseX>=pongPause.rectX && mouseX<=pongPause.rectX+pongPause.rectWidth && mouseY>=pongPause.rectY && mouseY<=pongPause.rectY+pongPause.rectHeight )
   pongOnOffSwitch();
+  if ( mouseX>=pongGameReset.rectX && mouseX<=pongGameReset.rectX+pongGameReset.rectWidth && mouseY>=pongGameReset.rectY && mouseY<=pongGameReset.rectY+pongGameReset.rectHeight )
+  pongGameReset();
+  if ( mouseX>=scoreKeepReset.rectX && mouseX<=scoreKeepReset.rectX+scoreKeepReset.rectWidth && mouseY>=scoreKeepReset.rectY && mouseY<=scoreKeepReset.rectY+scoreKeepReset.rectHeight )
+  resetPongScore();
 }//draw mousePressedPongOn
 void keyPressedPongOn() {
-  if (key == '1') firstBall.disappear = true;//debugging tool
+  if (key == '1') {
+    if (!firstBall.disappear) {
+      firstBall.disappear = true;
+    } else {
+      firstBall.disappear = false;
+    }
+  } //debugging tool
   if (key == '2') cheatBall.disappear = true;//debugging tool
   if (key == '3') pongOnOffSwitch();//switches pong on and off
+  if (key == '4') pongGameReset();//resets the paddle and ball positions
   firstPaddle.paddleKeyPressedWASD();//connects left paddle movement to WASD
   secondPaddle.paddleKeyPressedARROWKEYS();//connects right paddle movement to Arrow keys
 }//end keyPressedPongOn
+void pongGameReset() {
+  //pongGameOn = false;
+  if (!firstBall.disappear) firstBall.pongBallGameReset(); 
+  if (!cheatBall.disappear) cheatBall.pongBallGameReset();
+  firstPaddle.pongPaddleGameReset();
+  secondPaddle.pongPaddleGameReset();
+}//end pongGameReset
 void UIpong() {
   pongPause.button(#8D9EFF, #CCC1FF, (refMeasure*2)/7);
   UIpongText("PAUSE", "PLAY");
@@ -72,6 +92,10 @@ void UIpong() {
   scoreKeepRight.drawRect(0, #CCC1FF);
   scoreKeepLeft.rectText(scoreLeftText);
   scoreKeepRight.rectText(scoreRightText);
+  scoreKeepReset.button(#8D9EFF, #CCC1FF, (refMeasure*2)/7);
+  scoreKeepReset.rectText("Reset");
+  pongGameReset.button(#8D9EFF, #CCC1FF, (refMeasure*2)/7);
+  pongGameReset.rectText("Reset Game");
 }//end UIpong
 void UIpongText(String Text, String Text1) {
   if (pongGameOn) {
@@ -80,6 +104,12 @@ void UIpongText(String Text, String Text1) {
     pongPause.buttonBooleanText(false, Text, Text1);
   }
 }//end UIpongText
+void resetPongScore() {
+  scoreLeft = 0;
+  scoreRight = 0;
+  scoreLeftText = "0";
+  scoreRightText = "0";
+}//end resetPongScore
 void winnerDeclar() {
   if (!firstBall.disappear) {
     firstBall.winCondition();

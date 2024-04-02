@@ -6,8 +6,8 @@ void setup() {
 }//end setup
 void draw() {
   setupText();//Text subProgram
-  drawPong();//pongPractice subProgram
   drawPort();//Port subProgram
+  drawPong();//pongPractice subProgram
 }//end draw
 void mousePressed() {
   mousePressedPong();//pongPractice subProgram

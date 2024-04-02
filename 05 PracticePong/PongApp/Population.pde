@@ -1,5 +1,5 @@
 //Global Variables
-Rectangle pongPause, pong, quit, scoreKeepLeft, scoreKeepRight;
+Rectangle pongPause, pong, quit, scoreKeepLeft, scoreKeepRight, scoreKeepReset, pongGameReset;
 float refMeasure;
 //color
 color strokeColor = #FFFBE3;

@@ -123,5 +123,11 @@ class Ball {
       }
     }
   }//end winCondition
+  void pongBallGameReset() {
+    if (cheatBall.disappear) cheatBall.disappear = true;
+    firstBall.disappear = false;
+    ballX = (width/2)-(ballDiameter/2);
+    ballY = (height/2)-(ballDiameter/2);
+  }//end gameReset
 }//end Ball
 //end pongBall

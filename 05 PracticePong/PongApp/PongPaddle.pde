@@ -73,5 +73,9 @@ class Paddle {
     if (key == CODED & keyCode == UP) secondPaddle.paddleUp = false;
     if (key == CODED & keyCode == DOWN) secondPaddle.paddleDown = false;
   }//end paddleKeyReleasedARROWKEYS
+  void pongPaddleGameReset() {
+    paddleY = playAreaY + (playAreaHeight/2) - (paddleHeight/2);
+    //secondPaddle.paddleY = playAreaY + (playAreaHeight/2) - (paddleHeight/2);
+  }//end gameReset
 }//end Paddle
 //end pongPaddle
