@@ -10,6 +10,7 @@
  - Playable paddles
  - Functioning ball
  - Scoreboard
+ - Abstract shape classes
  - Sound **WIP**
  - Text
  - Easy, Medium and Impossible single player algorithms **WIP**
