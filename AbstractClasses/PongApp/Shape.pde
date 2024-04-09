@@ -1,24 +1,24 @@
 abstract class Shape {
   //Global Variables
-  float x, y;//Position variables
-  float wShape, hShape;//size and shape variables
-  color cShape;//color of the shape
-  color resetColor;//
+  float x; //X-Variable, Position
+  float y; //Y-Variable, Position
+  float w; //Width
+  float h; //Height
+  color c, colorReset; //Shape Color
+  //
   //Constructor
-  Shape( float x, float y, float wParameter, float hParameter, color cParameter) {
+  Shape(float x, float y, float w, float h, color c) {
     this.x = x;
     this.y = y;
-    this.wShape = wParameter;
-    this.hShape = hParameter;
-    this.cShape = cParameter;
-    resetColor = nightMode();
-  }//end constructor
+    this.w = w;
+    this.h = h;
+    this.c = c;
+    colorReset = backgroundColor();
+  } //End Constructor
+  //
   //Methods
-  void drawShape() {
-  }//end drawShape
-  color nightMode() {
-    color nightModeColor = 0;
-    return nightModeColor;
-  }//end nightModeColor
-}//end Shape class
-//end shape subProgram
+  abstract void drawing(); //Empty draw()
+  //
+  abstract color backgroundColor(); //End Night Mode Color Selector
+  //
+} //End Shape

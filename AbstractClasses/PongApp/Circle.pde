@@ -1,13 +1,17 @@
 abstract class Circle extends Shape {
   //Global Variables
-  //Constructors
-  Circle( float xGlobalParameter, float yGlobalParameter, float wGlobalParameter, float hGlobalParameter, color cGlobalParameter) {
-    super(xGlobalParameter, yGlobalParameter, wGlobalParameter, hGlobalParameter, cGlobalParameter);
-  }//end Circle(float float float float color)
+  //
+  Circle (float x, float y, float w, float h, color c) {
+    super(x, y, w, h, c);
+  } //End Circle
+  //
   //Methods
-  void drawCircle() {
-    fill(cShape);
-    ellipse(x, y, wShape, hShape);
-    fill(resetColor);
-  }//end drawCircle
-}//end circle
+  void drawing() {
+    fill(c);
+    ellipse(x, y, w, h);
+    fill(colorReset);
+  } //End draw
+  //
+  abstract color backgroundColor(); //End Night Mode Color Selector
+  //
+} // End Circle

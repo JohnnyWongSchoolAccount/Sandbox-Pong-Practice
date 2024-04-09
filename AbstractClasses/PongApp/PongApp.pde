@@ -1,17 +1,17 @@
 //Global Variables
 //
 void setup() {
-  //size(700, 400);//landscape
   size(400, 700);//portrait
+  //size(700, 400);//landscape
   display();
-}//end setup
+} //End setup
+//
 void draw() {
   if (displayCheck) displayLandscape();
-}//end draw
+} //End draw
 //
-void mousePressed() {
-}//end mousePressed
+void mousePressed() {} //End mousePressed
 //
-void keyPressed() {
-}//end keyPressed
-//end 
+void keyPressed() {} //End keyPressed
+//
+//End pongApp
