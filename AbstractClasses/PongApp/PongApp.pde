@@ -1,17 +1,19 @@
 //Global Variables
+PongPlayArea pongPlayArea;
 //
 void setup() {
-  size(400, 700);//portrait
-  //size(700, 400);//landscape
+//size(400, 700);//portrait
+  size(700, 400);//landscape
   display();
-} //End setup
+  pongPlayArea = new PongPlayArea(width/2 - (width * 4)/5, height/10, (width * 4)/5, (height * 7)/10, 0);
+}//end setup
 //
 void draw() {
-  if (displayCheck) displayLandscape();
-} //End draw
+  pongPlayArea.drawing();
+}//end draw
 //
-void mousePressed() {} //End mousePressed
+void mousePressed() {}//end mousePressed
 //
-void keyPressed() {} //End keyPressed
+void keyPressed() {}//end keyPressed
 //
-//End pongApp
+//end pongApp

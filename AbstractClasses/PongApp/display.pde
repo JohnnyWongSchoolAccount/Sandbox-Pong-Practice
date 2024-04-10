@@ -6,8 +6,9 @@ void display() {
   appWidth = width;
   appHeight = height;
   displayCheck = ( appWidth >= appHeight ) ? false : true;
+  if (displayCheck) displayLandscapePrompt();
 }//end display
-void displayLandscape() {//display error cheack
+void displayLandscapePrompt() {//display error cheack
   println(" ( •, ^ •,) stop cutie");
 }//end displaylandscape
 //end display subProgram

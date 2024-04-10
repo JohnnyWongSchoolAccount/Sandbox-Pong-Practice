@@ -3,25 +3,19 @@ abstract class Ball extends Circle {
   //
   Ball(float x, float y, float w, float h, color c) {
     super(x, y, w, h, c);
-  } //End Ball
-  //
+  }//end Ball
   //Methods
-  //
   void drawing() {
-  } //End Draw
-  //
+  }//end Draw
   color backgroundColor() {
-    color nm = 0;
-    return nm;
-  } //End Night Mode Color Selector
-  //
-  void move() {
+    color nightMode = 0;
+    return nightMode;
+  }//end Night Mode Color Selector
+  void moving() {
     //Students to finish
     //Bounce off top and bottom, paddles will be later
-  } //End Move Ball
-  //
+  }//end Move Ball
   /* Features
    - Ball in net triggers FIREWORKS
    */
-  //
-} //End Ball
+}//end Ball

@@ -3,7 +3,7 @@ abstract class Paddle extends Rectangle {
   //
   Paddle (float x, float y, float w, float h, color c) {
     super(x, y, w, h, c);
-  } //End Paddle
+  }//end Paddle
   //
   //Methods
   abstract void drawing();
@@ -11,4 +11,4 @@ abstract class Paddle extends Rectangle {
   /* Features:
    - Give Ball X-variable to bounce between two y-variables
    */
-} //End Paddle
+}//end Paddle

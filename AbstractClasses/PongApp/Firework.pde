@@ -3,20 +3,18 @@ abstract class Firework extends Circle {
   //
   Firework (float x, float y, float w, float h, color c) {
     super(x, y, w, h, c);
-    //Add gravity to how the Fireworks.move()
-  } //Fireworks
+  //Add gravity to how the Fireworks.move()
+  }//Fireworks
   //
   //Methods
-  void drawing() {
-  } //End draw
+  void drawing() {}//end draw
   //
   color backgroundColor() {
-    color nm = 0;
-    return nm;
-  } //End Night Mode Color Selector
+    color nightMode = 0;
+    return nightMode;
+  }//end backgroundColor
   //
-  void differentMove() { //Note: could be different name
-    //CAUTION: not the same as Ball.move()
+  void moving() {//Note: could be different name
     //Students to finish
-  } //End move
-} //End Firework
+  }//end move
+}//end Firework

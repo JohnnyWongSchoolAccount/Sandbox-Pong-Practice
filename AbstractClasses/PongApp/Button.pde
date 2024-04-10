@@ -3,8 +3,7 @@ abstract class Button extends Rectangle {
   //
   Button (float x, float y, float w, float h, color c) {
     super(x, y, w, h, c);
-  } //End Button
-  //
+  }//end Button
   //Methods
   abstract void drawing();
-} //End Button
+}//end Button

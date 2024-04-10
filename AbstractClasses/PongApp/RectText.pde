@@ -1,9 +1,9 @@
-abstract class ScoreboacolorReset extends Rectangle {
+abstract class Scoreboard extends Rectangle {
   //Global Variables
   //
-  ScoreboacolorReset (float x, float y, float w, float h, color c) {
+  Scoreboard (float x, float y, float w, float h, color c) {
     super(x, y, w, h, c);
-  } //End ScoreboacolorReset
+  }//end Scoreboard
   //
   //Methods
   abstract void drawing();
@@ -11,4 +11,4 @@ abstract class ScoreboacolorReset extends Rectangle {
   /* Features:
    - Any Easter Eggs
    */
-} //End ScoreboacolorReset
+}//end Scoreboard

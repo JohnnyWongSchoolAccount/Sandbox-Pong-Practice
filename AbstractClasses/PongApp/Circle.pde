@@ -3,15 +3,15 @@ abstract class Circle extends Shape {
   //
   Circle (float x, float y, float w, float h, color c) {
     super(x, y, w, h, c);
-  } //End Circle
+  }//end Circle
   //
   //Methods
   void drawing() {
     fill(c);
     ellipse(x, y, w, h);
     fill(colorReset);
-  } //End draw
+  }//end draw
   //
-  abstract color backgroundColor(); //End Night Mode Color Selector
+  abstract color backgroundColor();//end Night Mode Color Selector
   //
-} // End Circle
+}// end Circle
