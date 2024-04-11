@@ -1,4 +1,4 @@
-abstract class Paddle extends Rectangle {
+class Paddle extends Rectangle {
   //Global Variables
   //
   Paddle (float x, float y, float w, float h, color c) {
@@ -6,7 +6,12 @@ abstract class Paddle extends Rectangle {
   }//end Paddle
   //
   //Methods
-  abstract void drawing();
+  void drawing() {}//end draw
+  //
+  color backgroundColor() {
+    color nightMode = 0;
+    return nightMode;
+  }//end backgroundColor
   //
   /* Features:
    - Give Ball X-variable to bounce between two y-variables

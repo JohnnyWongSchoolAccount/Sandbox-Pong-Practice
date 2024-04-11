@@ -6,12 +6,14 @@ abstract class Circle extends Shape {
   }//end Circle
   //
   //Methods
-  void drawing() {
-    fill(c);
-    ellipse(x, y, w, h);
-    fill(colorReset);
-  }//end draw
+  abstract void drawing();//end draw
   //
   abstract color backgroundColor();//end Night Mode Color Selector
+  //
+  color randomColor() {
+    color chosenColor;
+    chosenColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
+    return chosenColor;
+  }//end randomColor
   //
 }// end Circle

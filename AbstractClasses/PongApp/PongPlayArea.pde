@@ -8,6 +8,7 @@ class PongPlayArea extends Rectangle {
   //Methods
   void drawing() {
     fill(c);
+    noStroke();
     rect(x, y, w, h);
     fill(colorReset);
   }//end drawing

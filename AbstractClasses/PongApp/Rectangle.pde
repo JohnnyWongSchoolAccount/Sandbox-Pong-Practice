@@ -7,6 +7,7 @@ abstract class Rectangle extends Shape {
   //
   //Methods
   abstract void drawing();
+  //
   abstract color backgroundColor(); 
   //
 }//end Rectangle

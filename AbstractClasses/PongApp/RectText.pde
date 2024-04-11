@@ -1,4 +1,4 @@
-abstract class Scoreboard extends Rectangle {
+class Scoreboard extends Rectangle {
   //Global Variables
   //
   Scoreboard (float x, float y, float w, float h, color c) {
@@ -6,7 +6,12 @@ abstract class Scoreboard extends Rectangle {
   }//end Scoreboard
   //
   //Methods
-  abstract void drawing();
+  void drawing() {}//end draw
+  //
+  color backgroundColor() {
+    color nightMode = 0;
+    return nightMode;
+  }//end backgroundColor
   //
   /* Features:
    - Any Easter Eggs
