@@ -5,6 +5,7 @@ color secondaryColor = #CCC1FF;
 PongPlayArea pongPlayArea;
 Firework[] firework = new Firework[10];
 Ball firstBall;
+Paddle firstPaddle, secondPaddle;
 //
 void setup() {
 //size(400, 700);//portrait
@@ -13,6 +14,9 @@ void setup() {
   pongPlayArea = new PongPlayArea(width/2-((width*2)/5), height/10, (width*4)/5, (height*7)/10, secondaryColor);
   firstBall = new Ball(pongPlayArea.x+(pongPlayArea.w/2)-(height/50), pongPlayArea.y+(pongPlayArea.h/2)-(height/50), 0, 0, 0);
   for (int i=0; i < firework.length; i++) firework[i] = new Firework(width*1.1, height*1.1, 0, 0, 0, 0.5);
+  firstPaddle = new Paddle(0, 0, 0, 0, 0, width/10);
+  firstPaddle = new Paddle(0, 0, 0, 0, 0, width/10);
+  secondPaddle = new Paddle(0, 0, 0, 0, 0, ((width*9)/10));
 }//end setup
 //
 void draw() {
@@ -20,13 +24,23 @@ void draw() {
   pongPlayArea.drawing();
   for (int i=0; i < firework.length; i++) firework[i].drawing();
   firstBall.drawing();
+  firstPaddle.drawing();
+  secondPaddle.drawing();
   explosions();
   //firework.moving();
 }//end draw
 //
 void mousePressed() {}//end mousePressed
 //
-void keyPressed() {}//end keyPressed
+void keyReleased() {
+  firstPaddle.paddleKeyReleasedWSAD();//stops left paddle movement
+  secondPaddle.paddleKeyReleasedARROWKEYS();//stops right paddle movement}//end keyReleased
+}
+//
+void keyPressed() {
+  firstPaddle.paddleKeyPressedWASD();
+  secondPaddle.paddleKeyPressedARROWKEYS();
+}//end keyPressed
 //
 void explosions() { //firework effect when goal region hit
   if (firstBall.x <= ((firstBall.w/2)+(width/10)) || firstBall.x >= ((width*9)/10)-(firstBall.w/2)) {

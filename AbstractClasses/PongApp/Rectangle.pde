@@ -10,4 +10,10 @@ abstract class Rectangle extends Shape {
   //
   abstract color backgroundColor(); 
   //
+  color randomColor() {
+    color chosenColor;
+    chosenColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
+    return chosenColor;
+  }//end randomColor
+  //
 }//end Rectangle
