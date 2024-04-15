@@ -17,6 +17,7 @@ void setup() {
   firstPaddle = new Paddle(0, 0, 0, 0, 0, width/10);
   firstPaddle = new Paddle(0, 0, 0, 0, 0, width/10);
   secondPaddle = new Paddle(0, 0, 0, 0, 0, ((width*9)/10));
+  firstBall.collisionPlayArea(pongPlayArea.y, pongPlayArea.h+pongPlayArea.y);
 }//end setup
 //
 void draw() {
@@ -26,6 +27,7 @@ void draw() {
   firstBall.drawing();
   firstPaddle.drawing();
   secondPaddle.drawing();
+  firstBall.collisionUpdate(firstPaddle.x, firstPaddle.y, firstPaddle.w, firstPaddle.h, secondPaddle.x, secondPaddle.y, secondPaddle.w, secondPaddle.h);
   explosions();
   //firework.moving();
 }//end draw
