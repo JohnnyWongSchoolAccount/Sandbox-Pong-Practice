@@ -5,13 +5,13 @@ class Firework extends Circle {
   //
   Firework (float x, float y, float w, float h, color c, float g) {
     super(x, y, w, h, c);
+    this.xVelocity = random(-5, 5);
+    this.yVelocity = random(-5, 5);
+    gravity = g;
     this.x = x;
     this.y = y;
     this.c = randomColor(); //RGB color
     this.w = random(firstBall.w/1.1);
-    this.xVelocity = random(-5, 5);
-    this.yVelocity = random(-5, 5);
-    gravity = g;
   //Add gravity to how the Fireworks.move()
   }//Fireworks
   //
@@ -39,4 +39,23 @@ class Firework extends Circle {
     //for (int i=0; i < firework.length; i++) firework[i].ballDiameter -= (ballDiameter/4);
     bounce();
   }//end moving
+  float ballX, ballW;
+  void ballVariablesUpdate(float x, float w) {
+    ballX = x;
+    ballW = w;
+  }//end ballVariablesUpdate
+  void explosions() { //firework effect when goal region hit
+  for (int i=0; i < firework.length; i++)
+  firework[i].ballVariablesUpdate(firstBall.x, firstBall.w);
+  if (ballX <= ((ballW/2)+(width/10)) || ballX >= ((width*9)/10)-(ballW/2)) {
+    for (int i=0; i < firework.length; i++) 
+    firework[i] = new Firework(firstBall.x, firstBall.y, 0, 0, 0, 0.5); //drawing multiple balls
+  }
+  /*if (!cheatBall.disappear) {
+    if (cheatBall.ballX <= ((cheatBall.ballDiameter/2)+(width/10)) || cheatBall.ballX >= ((width*9)/10)-(cheatBall.ballDiameter/2)) {
+      for (int i=0; i < firework.length; i++) 
+      firework[i] = new Ball(cheatBall.ballX, cheatBall.ballY, 0.5); //drawing multiple balls
+    }
+  }*/
+  }//end explosions
 }//end Firework

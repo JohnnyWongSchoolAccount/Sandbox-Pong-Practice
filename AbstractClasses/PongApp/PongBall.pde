@@ -1,6 +1,8 @@
 class Ball extends Circle {
   //Global Variables
   float xVelocity, yVelocity;
+  int scoreLeft = 0, scoreRight = 0;
+  String scoreLeftText = "0", scoreRightText = "0";
   //color ballColor;
   //
   Ball(float x, float y, float w, float h, color c) {
@@ -17,8 +19,8 @@ class Ball extends Circle {
     fill(c);
     ellipse(x, y, w, w);
     fill(colorReset);
-    moving();
-  }//end Draw
+    if (pongGameOn) moving();
+  }//end draw
   float xDirection() {
     float xDirectionLocal = int(random(-6, 6));
     while (xDirectionLocal == 0) {
@@ -69,6 +71,19 @@ class Ball extends Circle {
     paddleW1 = w1;
     paddleH1 = h1;
   }//end collisionUpdate
+  void winCondition() {
+    if (x <= ((w/2)+(width/10)) || x >= ((width*9)/10)-(w/2)) {
+      if (x <= ((w/2)+(width/10))) {
+        scoreRight++;
+        scoreRightText = String.valueOf(scoreRight);//converts int to string to print
+        pongGameOn = false;
+      } else  {
+        scoreLeft++;
+        scoreLeftText = String.valueOf(scoreLeft);//converts int to string to print
+        pongGameOn = false;
+      }
+    }
+  }//end winCondition
   void collisionsPaddle() {
     if (x+w >= paddleX && x <= paddleX+paddleW && y >= paddleY && y <= paddleY+paddleH) {
       //if (pongGameOn) firstPaddle.paddleColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
@@ -77,7 +92,7 @@ class Ball extends Circle {
     }
     if (x+w/2 >= paddleX1 && x <= paddleX1+paddleW1 && y >= paddleY1 && y <= paddleY1+paddleH1) {
       //if (pongGameOn) secondPaddle.paddleColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
-      x = paddleX1 - paddleW1;
+      x = paddleX1 - w/2;
       xVelocity *= -1;
     }
   }//end collisonPaddle
