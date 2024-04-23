@@ -5,34 +5,32 @@ class Button extends Rectangle {
     super(x, y, w, h, c);
   }//end Button
   //Methods
-  void drawing() {}//end Drawing
-  //
-  void drawing(float yParameter) {
-    rect(x, yParameter, w, h);
-    rectText("quit", yParameter);
-    rectSwitchingText("Menu", "Pong", true, yParameter);
+  void drawing() {
+    noStroke();
+    rect(x, y, w, h);
     fill(colorReset);
   }//end Drawing
-  void drawing(color hoverOver, color buttonColor, float yParameter, float secondyParameter) {
-    if ( mouseX>=x && mouseX<=x+w && mouseY>=yParameter && mouseY<=y+h )
+  void drawing(color hoverOver, color buttonColor) {
+    if ( mouseX>=x && mouseX<=x+w && mouseY>=y && mouseY<=y+h )
     {fill(hoverOver);} else {fill(buttonColor);}
-    drawing( yParameter);
-    if ( mouseX>=x && mouseX<=x+w && mouseY>=secondyParameter && mouseY<=y+h )
-    {fill(hoverOver);} else {fill(buttonColor);}
-    drawing(secondyParameter);
+    drawing();
   }//end button
-  void mousePressedExitFunction(float yParameter) {
-    if ( mouseX>=x && mouseX<=x+w && mouseY>= yParameter && mouseY<=yParameter+h )
+  void mousePressedExitFunction() {
+    if ( mouseX>=x && mouseX<=x+w && mouseY>= y && mouseY<=y+h )
     exit();
   }//end button
-  void rectText (String firstText, float yParameter) {
-    drawText( height, ink, CENTER, CENTER, Font, textSpace+firstText+textSpace, x, yParameter, w, h);
+  void mousePressedMenuToPongFunction() {
+    if ( mouseX>=x && mouseX<=x+w && mouseY>= y && mouseY<=y+h )
+    portSwitch();
+  }//end button
+  void rectText (String firstText) {
+    drawText( height, ink, CENTER, CENTER, Font, textSpace+firstText+textSpace, x, y, w, h);
   }//end rectText
-  void rectSwitchingText(String firstText, String secondText, boolean boole, float yParameter) {
+  void rectSwitchingText(String firstText, String secondText, boolean boole) {
     if (boole) {
-      drawText( height, ink, CENTER, CENTER, Font, textSpace+firstText+textSpace, x, yParameter, w, h);
+      drawText( height, ink, CENTER, CENTER, Font, textSpace+firstText+textSpace, x, y, w, h);
     } else {
-      drawText( height, ink, CENTER, CENTER, Font, textSpace+secondText+textSpace, x, yParameter, w, h);
+      drawText( height, ink, CENTER, CENTER, Font, textSpace+secondText+textSpace, x, y, w, h);
     }
   }//end rectSwitchingText
   //

@@ -4,6 +4,7 @@ float refMeasure;
 color strokeColor = #FFFBE3;
 color background = #9EA9F0;
 color secondaryColor = #CCC1FF;
+color hoverOver = #8D9EFF;
 Button menuToPong;
 //
 void setupPort() {
@@ -12,8 +13,16 @@ void setupPort() {
 }//end setupPong
 void drawPort() {
   if (portOn) drawPortOn();
+  color quitOn = #ff1919;
+  color quitOff = #00b530;
+  quit.drawing(quitOn, quitOff);
+  quit.rectText("quit");
+  menuToPong.drawing(hoverOver, secondaryColor);
+  menuToPong.rectSwitchingText("Pong", "Menu", portOn);
 }//end drawPong
 void mousePressedPort() {
+  menuToPong.mousePressedMenuToPongFunction();
+  quit.mousePressedExitFunction();
 }//end mousePressedPong
 void keyPressedPort() {
   if (key == '4') portSwitch();//switches pong on and off
@@ -21,8 +30,6 @@ void keyPressedPort() {
 //
 void drawPortOn() {
   background(background);
-  menuToPong.drawing(strokeColor, secondaryColor, quit.y, menuToPong.y);
-  //menuToPong.drawing("Menu");
 }//end drawPong
 void mousePressedPortOn() {
 }//end mousePressedPong

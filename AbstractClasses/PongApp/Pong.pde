@@ -42,17 +42,12 @@ void drawPongOn() {
   firstPaddle.drawing();
   secondPaddle.drawing();
   firstBall.collisionUpdate(firstPaddle.x, firstPaddle.y, firstPaddle.w, firstPaddle.h, secondPaddle.x, secondPaddle.y, secondPaddle.w, secondPaddle.h);
-  color quitOn = #ff191911;
-  color quitOff = #00b530;
-  quit.drawing(quitOn, quitOff, quit.y, menuToPong.y);
   leftScoreKeep.drawing();
   rightScoreKeep.drawing();
   leftScoreKeep.scoreKeepUpdate(firstBall.scoreLeft, firstBall.scoreRight, firstBall.scoreLeftText, firstBall.scoreRightText);
   rightScoreKeep.scoreKeepUpdate(firstBall.scoreLeft, firstBall.scoreRight, firstBall.scoreLeftText, firstBall.scoreRightText);
 }//end drawPong
-void mousePressedPongOn() {
-  quit.mousePressedExitFunction(quit.y);
-}//end mousePressedPong
+void mousePressedPongOn() {}//end mousePressedPong
 void keyPressedPongOn() {
   firstPaddle.paddleKeyPressedWASD();
   secondPaddle.paddleKeyPressedARROWKEYS();

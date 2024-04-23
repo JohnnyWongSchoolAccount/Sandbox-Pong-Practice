@@ -10,12 +10,13 @@ void setup() {
 }//end setup
 //
 void draw() {
-  drawPort();
   drawPong();
+  drawPort();
 }//end draw
 //
 void mousePressed() {
   mousePressedPong();
+  mousePressedPort();
 }//end mousePressed
 //
 void keyPressed() {
