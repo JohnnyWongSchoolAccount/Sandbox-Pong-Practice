@@ -39,17 +39,18 @@ class Firework extends Circle {
     //for (int i=0; i < firework.length; i++) firework[i].ballDiameter -= (ballDiameter/4);
     bounce();
   }//end moving
-  float ballX, ballW;
-  void ballVariablesUpdate(float x, float w) {
+  float ballX, ballY, ballW;
+  void ballVariablesUpdate(float x, float y, float w) {
     ballX = x;
+    ballY = y;
     ballW = w;
   }//end ballVariablesUpdate
+  //
   void explosions() { //firework effect when goal region hit
-  for (int i=0; i < firework.length; i++)
-  firework[i].ballVariablesUpdate(firstBall.x, firstBall.w);
+  for (int i=0; i < firework.length; i++) firework[i].ballVariablesUpdate(firstBall.x, firstBall.y, firstBall.w);
   if (ballX <= ((ballW/2)+(width/10)) || ballX >= ((width*9)/10)-(ballW/2)) {
     for (int i=0; i < firework.length; i++) 
-    firework[i] = new Firework(firstBall.x, firstBall.y, 0, 0, 0, 0.5); //drawing multiple balls
+    firework[i] = new Firework(ballX, ballY, 0, 0, 0, 0.5); //drawing multiple balls
   }
   /*if (!cheatBall.disappear) {
     if (cheatBall.ballX <= ((cheatBall.ballDiameter/2)+(width/10)) || cheatBall.ballX >= ((width*9)/10)-(cheatBall.ballDiameter/2)) {
