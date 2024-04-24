@@ -38,7 +38,7 @@ void drawPongOn() {
   pongPlayArea.drawing();
   firstBall.drawing();
   for (int i=0; i < firework.length; i++) firework[i].drawing();
-  for (int i=0; i < firework.length; i++) firework[i].explosions();
+  for (int i=0; i < firework.length; i++) firework[i].explosions(firstBall.x, firstBall.y, firstBall.w);
   firstPaddle.drawing();
   secondPaddle.drawing();
   firstBall.collisionUpdate(firstPaddle.x, firstPaddle.y, firstPaddle.w, firstPaddle.h, secondPaddle.x, secondPaddle.y, secondPaddle.w, secondPaddle.h);

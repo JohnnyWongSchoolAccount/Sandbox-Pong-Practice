@@ -2,6 +2,7 @@ class Firework extends Circle {
   //Global Variables
   float  gravity = 0.0;
   float xVelocity, yVelocity;
+ // float ballX, ballY, ballW;
   //
   Firework (float x, float y, float w, float h, color c, float g) {
     super(x, y, w, h, c);
@@ -39,15 +40,12 @@ class Firework extends Circle {
     //for (int i=0; i < firework.length; i++) firework[i].ballDiameter -= (ballDiameter/4);
     bounce();
   }//end moving
-  float ballX, ballY, ballW;
-  void ballVariablesUpdate(float x, float y, float w) {
-    ballX = x;
-    ballY = y;
-    ballW = w;
-  }//end ballVariablesUpdate
   //
-  void explosions() { //firework effect when goal region hit
-  for (int i=0; i < firework.length; i++) firework[i].ballVariablesUpdate(firstBall.x, firstBall.y, firstBall.w);
+  void explosions(float x, float y, float w) { //firework effect when goal region hit
+  float ballX, ballY, ballW;
+  ballX = x;
+  ballY = y;
+  ballW = w;
   if (ballX <= ((ballW/2)+(width/10)) || ballX >= ((width*9)/10)-(ballW/2)) {
     for (int i=0; i < firework.length; i++) 
     firework[i] = new Firework(ballX, ballY, 0, 0, 0, 0.5); //drawing multiple balls
