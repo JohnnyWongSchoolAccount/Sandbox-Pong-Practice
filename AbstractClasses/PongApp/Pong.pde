@@ -3,7 +3,7 @@ boolean pongOn = false;
 boolean pongGameOn = true;
 PongPlayArea pongPlayArea;
 Firework[] firework = new Firework[10];
-Ball firstBall;
+Ball firstBall, secondBall;
 Paddle firstPaddle, secondPaddle;
 ScoreKeep leftScoreKeep, rightScoreKeep;
 Button quit;
@@ -11,6 +11,7 @@ Button quit;
 void setupPong() {
   pongPlayArea = new PongPlayArea(width/2-((width*2)/5), height/10, (width*4)/5, (height*7)/10, secondaryColor);
   firstBall = new Ball(pongPlayArea.x+(pongPlayArea.w/2)-(height/50), pongPlayArea.y+(pongPlayArea.h/2)-(height/50), 0, 0, 0);
+  secondBall = new Ball(width*-1, height*-1, firstBall.w, firstBall.w, firstBall.c);
   for (int i=0; i < firework.length; i++) firework[i] = new Firework(width*1.1, height*1.1, 0, 0, 0, 0.5);
   firstPaddle = new Paddle(0, 0, 0, 0, 0, width/10);
   secondPaddle = new Paddle(0, 0, 0, 0, 0, ((width*9)/10));
@@ -18,6 +19,8 @@ void setupPong() {
   leftScoreKeep = new ScoreKeep(0, height/10+height/14+(refMeasure/2), 0, 0, 0);
   rightScoreKeep = new ScoreKeep(0, leftScoreKeep.y+leftScoreKeep.h+(refMeasure/2), 0, 0, 0);
   firstBall.collisionPlayArea(pongPlayArea.y, pongPlayArea.h+pongPlayArea.y);
+  firstBall.disappear = false;
+  secondBall.disappear = true;
 }//end setupPong
 void drawPong() {
   if (pongOn) drawPongOn();
@@ -36,9 +39,10 @@ void keyReleasedPong() {
 void drawPongOn() {
   background(background);
   pongPlayArea.drawing();
-  firstBall.drawing();
-  for (int i=0; i < firework.length; i++) firework[i].drawing();
   for (int i=0; i < firework.length; i++) firework[i].explosions(firstBall.x, firstBall.y, firstBall.w);
+  for (int i=0; i < firework.length; i++) firework[i].drawing();
+  if (!firstBall.disappear) firstBall.drawing();
+  if (!secondBall.disappear) secondBall.drawing();
   firstPaddle.drawing();
   secondPaddle.drawing();
   firstBall.collisionUpdate(firstPaddle.x, firstPaddle.y, firstPaddle.w, firstPaddle.h, secondPaddle.x, secondPaddle.y, secondPaddle.w, secondPaddle.h);
@@ -47,7 +51,13 @@ void drawPongOn() {
   leftScoreKeep.scoreKeepUpdate(firstBall.scoreLeft, firstBall.scoreRight, firstBall.scoreLeftText, firstBall.scoreRightText);
   rightScoreKeep.scoreKeepUpdate(firstBall.scoreLeft, firstBall.scoreRight, firstBall.scoreLeftText, firstBall.scoreRightText);
 }//end drawPong
-void mousePressedPongOn() {}//end mousePressedPong
+void mousePressedPongOn() {
+  if ( mouseX>=pongPlayArea.x && mouseX<=pongPlayArea.x+pongPlayArea.w && mouseY>=pongPlayArea.y && mouseY<=pongPlayArea.y+pongPlayArea.h ) {
+    secondBall.disappear = false;
+    secondBall = new Ball(mouseX, mouseY, firstBall.w, firstBall.w, firstBall.c);//initiates after mousePressed
+    //for (int i=0; i < firework.length; i++) firework[i] = new Ball(int(mouseX), int(mouseY), 0.5);//populating firework
+  }
+}//end mousePressedPong
 void keyPressedPongOn() {
   firstPaddle.paddleKeyPressedWASD();
   secondPaddle.paddleKeyPressedARROWKEYS();

@@ -3,6 +3,7 @@ class Ball extends Circle {
   float xVelocity, yVelocity;
   int scoreLeft = 0, scoreRight = 0;
   String scoreLeftText = "0", scoreRightText = "0";
+  boolean disappear;
   //color ballColor;
   //
   Ball(float x, float y, float w, float h, color c) {
