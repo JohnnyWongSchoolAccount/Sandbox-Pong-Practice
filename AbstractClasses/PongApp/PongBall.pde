@@ -11,16 +11,25 @@ class Ball extends Circle {
     int referentMeasures = (width<height) ? (width):(height) ; //ternary Operator = chooses the smaller value
     //object variables //this is "new Ball()"
     this.w = referentMeasures/25;
-    this.xVelocity = yDirection();
-    this.yVelocity = xDirection();
-    c = randomColor();
+    this.xVelocity = xDirection();
+    this.yVelocity = yDirection();
+    this.c = randomColor();
   }//end Ball
+  Ball(float x, float y, float w, float h, color c, float xV, float yV) {
+    super(x, y, w, h, c);
+    this.x = x;
+    this.y = y;
+    this.w = w;
+    this.c = randomColor();
+    this.xVelocity = xV;
+    this.yVelocity = yV;
+  }//end cheatBall
   //Methods
   void drawing() {
     fill(c);
     ellipse(x, y, w, w);
-    fill(colorReset);
     if (pongGameOn) moving();
+    fill(colorReset);
   }//end draw
   float xDirection() {
     float xDirectionLocal = int(random(-6, 6));
@@ -37,14 +46,12 @@ class Ball extends Circle {
     return yDirectionLocal;
   }//end yDirection
   //
-  //
   color backgroundColor() {
     color nightMode = 0;
     return nightMode;
   }//end Night Mode Color Selector
     void bounce() {
     if (x <= ((w/2)+(width/10)) || firstBall.x >= ((width*9)/10)-(w/2)) c = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
-    //if (ballX <= ((ballDiameter/2)+(width/10)) || cheatBall.ballX >= ((width*9)/10)-(ballDiameter/2)) cheatBall.c = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
     if (x <= ((w/2)+(width/10)) || x >= ((width*9)/10)-(w/2)) (xVelocity) *= -1;
     if (y <= ((playAreaY)+(w/2)) || y >= (playAreaH)-(w/2)) (yVelocity) *= -1;
   }//end bounce

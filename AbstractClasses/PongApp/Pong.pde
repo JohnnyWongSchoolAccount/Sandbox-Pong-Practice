@@ -11,7 +11,7 @@ Button quit;
 void setupPong() {
   pongPlayArea = new PongPlayArea(width/2-((width*2)/5), height/10, (width*4)/5, (height*7)/10, secondaryColor);
   firstBall = new Ball(pongPlayArea.x+(pongPlayArea.w/2)-(height/50), pongPlayArea.y+(pongPlayArea.h/2)-(height/50), 0, 0, 0);
-  secondBall = new Ball(width*-1, height*-1, firstBall.w, firstBall.w, firstBall.c);
+  secondBall = new Ball(width*1.1, height*1.1, 0, 0, 0, firstBall.xVelocity, firstBall.yVelocity);
   for (int i=0; i < firework.length; i++) firework[i] = new Firework(width*1.1, height*1.1, 0, 0, 0, 0.5);
   firstPaddle = new Paddle(0, 0, 0, 0, 0, width/10);
   secondPaddle = new Paddle(0, 0, 0, 0, 0, ((width*9)/10));
@@ -54,7 +54,7 @@ void drawPongOn() {
 void mousePressedPongOn() {
   if ( mouseX>=pongPlayArea.x && mouseX<=pongPlayArea.x+pongPlayArea.w && mouseY>=pongPlayArea.y && mouseY<=pongPlayArea.y+pongPlayArea.h ) {
     secondBall.disappear = false;
-    secondBall = new Ball(mouseX, mouseY, firstBall.w, firstBall.w, firstBall.c);//initiates after mousePressed
+    secondBall = new Ball(mouseX, mouseY, firstBall.w, firstBall.w, firstBall.c, firstBall.xVelocity, firstBall.yVelocity);//initiates after mousePressed
     //for (int i=0; i < firework.length; i++) firework[i] = new Ball(int(mouseX), int(mouseY), 0.5);//populating firework
   }
 }//end mousePressedPong
