@@ -10,6 +10,7 @@ Button menuToPong;
 void setupPort() {
   refMeasure = width/50;
   menuToPong = new Button(refMeasure, (height-(height/8 + refMeasure)), width/6, height/8, 0);
+  quit = new Button(width-width/10, 0, width/10, height/14, 0); 
 }//end setupPong
 void drawPort() {
   if (portOn) drawPortOn();

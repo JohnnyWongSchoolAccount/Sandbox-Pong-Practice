@@ -28,7 +28,7 @@ class Paddle extends Rectangle {
     fill(c);
     rect(x, y, w, h);
     fill(colorReset);
-    paddleMove();
+    if (pongGameOn) paddleMove();
   }//end draw
   void paddleMove() {
     if (paddleUp) paddleUp();

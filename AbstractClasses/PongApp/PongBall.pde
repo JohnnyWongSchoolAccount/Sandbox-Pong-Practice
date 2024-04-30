@@ -8,7 +8,7 @@ class Ball extends Circle {
   //
   Ball(float x, float y, float w, float h, color c) {
     super(x, y, w, h, c);
-    int referentMeasures = (width<height) ? (width):(height) ; //ternary Operator = chooses the smaller value
+    int referentMeasures = (width<height) ? (width):(height); //ternary Operator = chooses the smaller value
     //object variables //this is "new Ball()"
     this.w = referentMeasures/25;
     this.xVelocity = xDirection();
@@ -53,7 +53,7 @@ class Ball extends Circle {
     void bounce() {
     if (x <= ((w/2)+(width/10)) || firstBall.x >= ((width*9)/10)-(w/2)) c = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
     if (x <= ((w/2)+(width/10)) || x >= ((width*9)/10)-(w/2)) (xVelocity) *= -1;
-    if (y <= ((playAreaY)+(w/2)) || y >= (playAreaH)-(w/2)) (yVelocity) *= -1;
+    if (y <= ((playAreaY)+(w/2)) || y >= (playAreaH+playAreaY)-(w/2)) (yVelocity) *= -1;
   }//end bounce
   void moving() {
     x += (xVelocity);
@@ -62,9 +62,11 @@ class Ball extends Circle {
     bounce();
     collisionsPaddle();
   }//end animatingMovement
-  float playAreaY, playAreaH;
-  void collisionPlayArea(float y, float h) {
+  float playAreaX, playAreaY, playAreaW, playAreaH;
+  void collisionPlayArea(float x, float y, float w, float h) {
+    playAreaX = x;
     playAreaY = y;
+    playAreaW = w;
     playAreaH = h;
   }//end collisonsUpdate
   float paddleX, paddleY, paddleW, paddleH;
@@ -84,14 +86,20 @@ class Ball extends Circle {
       if (x <= ((w/2)+(width/10))) {
         scoreRight++;
         scoreRightText = String.valueOf(scoreRight);//converts int to string to print
+        toCenter();
         pongGameOn = false;
       } else  {
         scoreLeft++;
         scoreLeftText = String.valueOf(scoreLeft);//converts int to string to print
+        toCenter();
         pongGameOn = false;
       }
     }
   }//end winCondition
+  void toCenter() {
+    x = playAreaX+(playAreaW/2)-(height/50);
+    y = playAreaY+(playAreaH/2)-(height/50);
+  }//end toCenter
   void collisionsPaddle() {
     if (x+w >= paddleX && x <= paddleX+paddleW && y >= paddleY && y <= paddleY+paddleH) {
       //if (pongGameOn) firstPaddle.paddleColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));

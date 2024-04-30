@@ -23,6 +23,10 @@ class Button extends Rectangle {
     if ( mouseX>=x && mouseX<=x+w && mouseY>= y && mouseY<=y+h )
     portSwitch();
   }//end button
+  void mousePressedPauseGameFunction() {
+    if ( mouseX>=x && mouseX<=x+w && mouseY>= y && mouseY<=y+h )
+    pongOnOffSwitch();
+  }//end button
   void rectText (String firstText) {
     drawText( height, ink, CENTER, CENTER, Font, textSpace+firstText+textSpace, x, y, w, h);
   }//end rectText
