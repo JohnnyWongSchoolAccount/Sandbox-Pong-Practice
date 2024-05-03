@@ -40,7 +40,7 @@ class Firework extends Circle {
   }//end moving
   //
   void explosions(float xParameter, float yParameter, float wParameter) { //firework effect when goal region hit
-  if (xParameter <= ((wParameter/2)+(width/10)) || xParameter >= ((width*9)/10)-(wParameter/2)) {
+  if (xParameter <= ((wParameter)+(width/10)) || xParameter >= ((width*9)/10)-(wParameter)) {
     for (int i=0; i < firework.length; i++) 
     firework[i] = new Firework(xParameter, yParameter, 0, 0, 0, 0.5); //drawing multiple balls
     println("fire");
