@@ -1,7 +1,7 @@
 # Sandbox-Pong-Practice
 ---
  - CS30 object orientated programming Project
- - The current version of program is '05 PracticePong': https://github.com/JohnnyWongSchoolAccount/Sandbox-Pong-Practice/tree/main/05%20PracticePong/PongApp
+ - The current version of program is 'PongAppArrayList': [https://github.com/JohnnyWongSchoolAccount/Sandbox-Pong-Practice/tree/main/05%20PracticePong/PongApp](https://github.com/JohnnyWongSchoolAccount/Sandbox-Pong-Practice/tree/main/ArrayListAbstractClass/PongAppArrayList)
  - Finalized Version: https://github.com/JohnnyWongSchoolAccount/Sandbox-Pong-Game-On **WIP**
 
 # To Do List - Marking
