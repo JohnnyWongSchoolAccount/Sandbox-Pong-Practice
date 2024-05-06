@@ -43,7 +43,6 @@ class Firework extends Circle {
   if (xParameter <= ((wParameter)+(width/10)) || xParameter >= ((width*9)/10)-(wParameter)) {
     for (int i=0; i < firework.length; i++) 
     firework[i] = new Firework(xParameter, yParameter, 0, 0, 0, 0.5); //drawing multiple balls
-    println("fire");
   }
   /*if (!cheatBall.disappear) {
     if (cheatBall.ballX <= ((cheatBall.ballDiameter/2)+(width/10)) || cheatBall.ballX >= ((width*9)/10)-(cheatBall.ballDiameter/2)) {

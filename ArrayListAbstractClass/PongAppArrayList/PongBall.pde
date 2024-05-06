@@ -53,7 +53,7 @@ class Ball extends Circle {
     void bounce() {
     if (x <= ((w/2)+(width/10)) || firstBall.x >= ((width*9)/10)-(w/2)) c = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
     if (x <= ((w/2)+(width/10)) || x >= ((width*9)/10)-(w/2)) (xVelocity) *= -1;
-    if (y <= ((playAreaY)+(w/2)) || y >= (playAreaH+playAreaY)-(w/2)) (yVelocity) *= -1;
+    if (y <= ((height/10)+(w/2)) || y >= ((height*7)/10+height/10)-(w/2)) (yVelocity) *= -1;
   }//end bounce
   void moving() {
     x += (xVelocity);
@@ -101,14 +101,14 @@ class Ball extends Circle {
     y = playAreaY+(playAreaH/2)-(height/50);
   }//end toCenter
   void collisionsPaddle() {
-    if (x+w >= paddleX && x <= paddleX+paddleW && y >= paddleY && y <= paddleY+paddleH) {
+    if (x-(w/2) >= paddleX && x-(w/2) <= paddleX+paddleW && y-(w/2) >= paddleY && y+(w/2) <= paddleY+paddleH) {
       //if (pongGameOn) firstPaddle.paddleColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
-      x = paddleX + paddleW;
+      x = paddleX + paddleW + (w/2);
       xVelocity *= -1;
     }
-    if (x+w/2 >= paddleX1 && x <= paddleX1+paddleW1 && y >= paddleY1 && y <= paddleY1+paddleH1) {
+    if (x+(w/2) >= paddleX1 && x+(w/2) <= paddleX1+paddleW1 && y >= paddleY1 && y <= paddleY1+paddleH1) {
       //if (pongGameOn) secondPaddle.paddleColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
-      x = paddleX1 - w/2;
+      x = paddleX1 - (w/2);
       xVelocity *= -1;
     }
   }//end collisonPaddle

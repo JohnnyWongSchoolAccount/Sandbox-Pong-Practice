@@ -48,6 +48,7 @@ void drawPongOn() {
   pauseGame.drawing(hoverOver, secondaryColor);
   pauseGame.rectSwitchingText("Pause", "Play", pongGameOn);
   firstBall.collisionUpdate(firstPaddle.x, firstPaddle.y, firstPaddle.w, firstPaddle.h, secondPaddle.x, secondPaddle.y, secondPaddle.w, secondPaddle.h);
+  secondBall.collisionUpdate(firstPaddle.x, firstPaddle.y, firstPaddle.w, firstPaddle.h, secondPaddle.x, secondPaddle.y, secondPaddle.w, secondPaddle.h);
   leftScoreKeep.drawing();
   rightScoreKeep.drawing();
   leftScoreKeep.scoreKeepUpdate(firstBall.scoreLeft, firstBall.scoreRight, firstBall.scoreLeftText, firstBall.scoreRightText);
