@@ -13,8 +13,10 @@ void setupPong() {
   firstBall = new Ball(pongPlayArea.x+(pongPlayArea.w/2)-(height/50), pongPlayArea.y+(pongPlayArea.h/2)-(height/50), 0, 0, 0);
   secondBall = new Ball(width*1.1, height*1.1, 0, 0, 0, firstBall.xVelocity, firstBall.yVelocity);
   for (int i=0; i < firework.length; i++) firework[i] = new Firework(width*1.1, height*1.1, 0, 0, 0, 0.5);
-  firstPaddle = new Paddle(0, 0, 0, 0, 0, width/10);
-  secondPaddle = new Paddle(0, 0, 0, 0, 0, ((width*9)/10));
+  firstPaddle = new Paddle(0, 0, 0, 0, 0);
+  secondPaddle = new Paddle(0, 0, 0, 0, 0);
+  firstPaddle.valuesProduce(width/10, firstBall.w, pongPlayArea.y, pongPlayArea.h);
+  secondPaddle.valuesProduce(((width*9)/10), firstBall.w, pongPlayArea.y, pongPlayArea.h);
   pauseGame = new Button(refMeasure, height/10, height/8, height/14, 0); 
   leftScoreKeep = new ScoreKeep(0, height/10+height/14+(refMeasure/2), 0, 0, 0);
   rightScoreKeep = new ScoreKeep(0, leftScoreKeep.y+leftScoreKeep.h+(refMeasure/2), 0, 0, 0);

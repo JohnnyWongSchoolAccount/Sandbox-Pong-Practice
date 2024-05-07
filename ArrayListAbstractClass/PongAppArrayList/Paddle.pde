@@ -1,35 +1,41 @@
 class Paddle extends Rectangle {
   //Global Variables
-  float knotX, knotY, knotWidth, knotHeight;
+  float goalX, goalY, goalWidth, goalHeight;
   float paddleTravel;
   boolean paddleUp = false, paddleDown = false;//keyPressed in draw
   float playAreaY;//smallest Y value for paddle movement height/10
   float playAreaHeight;
   //
-  Paddle (float x, float y, float w, float h, color c, float startPosition) {
+  Paddle (float x, float y, float w, float h, color c) {
     super(x, y, w, h, c);
-    knotWidth = (firstBall.w*3);
-    this.w = (firstBall.w/2); //Ball Radius
-    playAreaY = pongPlayArea.y;//smallest Y value for paddle movement height/10
-    playAreaHeight = pongPlayArea.h;
-    if ( startPosition == width/10 ) knotX = startPosition; //Adding to the knotX
-    if ( startPosition == (((width*9)/10)) ) knotX = startPosition - (knotWidth*2) - w; //Subtracting the knotX
-    this.x = (knotX) + (knotWidth); //netX has two values, fix ERROR
-    if ( startPosition == width ) knotX = startPosition - knotWidth;
+  }//end Paddle
+  //
+  //Methods
+  float ballW;
+  void valuesProduce(float sp, float ballWidth, float playAreaYParameter, float playAreaH) {
+    ballW = ballWidth;
+    playAreaY = playAreaYParameter;//smallest Y value for paddle movement height/10
+    playAreaHeight = playAreaH;
+    goalWidth = (ballW*3);
+    this.w = (ballW/2); //Ball Radius
+    if ( sp == width/10 ) goalX = sp; //Adding to the knotX
+    if ( sp == (((width*9)/10)) ) goalX = sp - (goalWidth*2) - w; //Subtracting the knotX
+    this.x = (goalX) + (goalWidth); //netX has two values, fix ERROR
+    if ( sp == width ) goalX = sp - goalWidth;
     float startPositionDifferent = ( 0.25 );//has to be decimal
     this.h = (playAreaHeight * startPositionDifferent);
     this.y = (playAreaY/2) + (playAreaHeight/2) - (h/2);
     this.paddleTravel = (playAreaHeight/50);//paddle speed
     this.c = randomColor();
-  }//end Paddle
+  }
   //
-  //Methods
   void drawing() {
     fill(c);
     rect(x, y, w, h);
     fill(colorReset);
     if (pongGameOn) paddleMove();
-  }//end draw
+  }//end drawing
+  
   void paddleMove() {
     if (paddleUp) paddleUp();
     if (paddleDown) paddleDown();
@@ -68,3 +74,4 @@ class Paddle extends Rectangle {
    - Give Ball X-variable to bounce between two y-variables
    */
 }//end Paddle
+//end Paddle SubProgram

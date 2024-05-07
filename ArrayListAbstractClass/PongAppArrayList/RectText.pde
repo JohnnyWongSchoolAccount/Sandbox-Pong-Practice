@@ -17,7 +17,7 @@ class ScoreKeep extends Rectangle {
     //if (pongGameOn) cheatBall.winCondition();
     rectText(scoreLeftText, leftScoreKeep.y);
     rectText(scoreRightText, rightScoreKeep.y);
-  }//end draw
+  }//end drawing
   int scoreLeft, scoreRight;
   String scoreLeftText, scoreRightText;
   void scoreKeepUpdate(int sL, int sR, String sLT, String sRT) {
@@ -39,3 +39,4 @@ class ScoreKeep extends Rectangle {
    - Any Easter Eggs
    */
 }//end Scoreboard
+//end rectText subProgram

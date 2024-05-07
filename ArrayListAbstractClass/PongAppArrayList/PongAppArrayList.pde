@@ -1,4 +1,5 @@
 //Global Variables
+ArrayList<Shape> shapes = new ArrayList<Shape>();
 //
 void setup() {
 //size(400, 700);//portrait
@@ -27,5 +28,4 @@ void keyPressed() {
 void keyReleased() {
   keyReleasedPong();
 }//end keyReleased
-//
 //end pongApp

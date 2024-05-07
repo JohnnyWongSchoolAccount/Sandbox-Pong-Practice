@@ -15,6 +15,8 @@ class Firework extends Circle {
   //Add gravity to how the Fireworks.move()
   }//Fireworks
   //Methods
+  void valuesProduce() {
+  }
   void drawing() {
     fill(c);
     ellipse(x, y, w, w);
@@ -52,3 +54,4 @@ class Firework extends Circle {
   }*/
   }//end explosions
 }//end Firework
+//end Firework subProgram

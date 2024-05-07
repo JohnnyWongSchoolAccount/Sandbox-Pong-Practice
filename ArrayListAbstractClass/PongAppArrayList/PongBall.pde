@@ -21,8 +21,8 @@ class Ball extends Circle {
     this.y = y;
     this.w = w;
     this.c = randomColor();
-    this.xVelocity = xV;
-    this.yVelocity = yV;
+    this.xVelocity = xDirection();
+    this.yVelocity = yDirection();
   }//end cheatBall
   //Methods
   void drawing() {
@@ -83,16 +83,16 @@ class Ball extends Circle {
   }//end collisionUpdate
   void winCondition() {
     if (x <= ((w/2)+(width/10)) || x >= ((width*9)/10)-(w/2)) {
-      if (x <= ((w/2)+(width/10))) {
+      if (x >= ((width*9)/10)-(w/2)) {
         scoreRight++;
         scoreRightText = String.valueOf(scoreRight);//converts int to string to print
         toCenter();
-        pongGameOn = false;
+        //pongGameOn = false;
       } else  {
         scoreLeft++;
         scoreLeftText = String.valueOf(scoreLeft);//converts int to string to print
         toCenter();
-        pongGameOn = false;
+        //pongGameOn = false;
       }
     }
   }//end winCondition
@@ -116,3 +116,4 @@ class Ball extends Circle {
    */
   }//end collisionsPaddle
 }//end Ball
+//end PongBall subProgram

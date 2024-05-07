@@ -14,19 +14,19 @@ class Button extends Rectangle {
     if ( mouseX>=x && mouseX<=x+w && mouseY>=y && mouseY<=y+h )
     {fill(hoverOver);} else {fill(buttonColor);}
     drawing();
-  }//end button
+  }//end drawing
   void mousePressedExitFunction() {
     if ( mouseX>=x && mouseX<=x+w && mouseY>= y && mouseY<=y+h )
     exit();
-  }//end button
+  }//end mousePressedExitFunction
   void mousePressedMenuToPongFunction() {
     if ( mouseX>=x && mouseX<=x+w && mouseY>= y && mouseY<=y+h )
     portSwitch();
-  }//end button
+  }//end mousePressedMenuToPongFunction
   void mousePressedPauseGameFunction() {
     if ( mouseX>=x && mouseX<=x+w && mouseY>= y && mouseY<=y+h )
     pongOnOffSwitch();
-  }//end button
+  }//end mousePressedPauseGameFunction
   void rectText (String firstText) {
     drawText( height, ink, CENTER, CENTER, Font, textSpace+firstText+textSpace, x, y, w, h);
   }//end rectText
@@ -41,5 +41,6 @@ class Button extends Rectangle {
   color backgroundColor() {
     color nightMode = 0;
     return nightMode;
-  }//backgroundColor
+  }//end backgroundColor
 }//end Button
+//end Button subProgram
