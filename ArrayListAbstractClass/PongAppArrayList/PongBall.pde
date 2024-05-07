@@ -101,18 +101,18 @@ class Ball extends Circle {
     y = playAreaY+(playAreaH/2)-(height/50);
   }//end toCenter
   void collisionsPaddle() {
-    if (x-(w/2) >= paddleX && x-(w/2) <= paddleX+paddleW && y-(w/2) >= paddleY && y+(w/2) <= paddleY+paddleH) {
+    if (x+w >= paddleX && x <= paddleX+paddleW && y >= paddleY && y <= paddleY+paddleH) {
       //if (pongGameOn) firstPaddle.paddleColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
-      x = paddleX + paddleW + (w/2);
+      x = paddleX + paddleW;
       xVelocity *= -1;
     }
-    if (x+(w/2) >= paddleX1 && x+(w/2) <= paddleX1+paddleW1 && y >= paddleY1 && y <= paddleY1+paddleH1) {
+    if (x+w/2 >= paddleX1 && x <= paddleX1+paddleW1 && y >= paddleY1 && y <= paddleY1+paddleH1) {
       //if (pongGameOn) secondPaddle.paddleColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
-      x = paddleX1 - (w/2);
+      x = paddleX1 - w/2;
       xVelocity *= -1;
     }
-  }//end collisonPaddle
   /* Features
    - Ball in net triggers FIREWORKS
    */
+  }//end collisionsPaddle
 }//end Ball
