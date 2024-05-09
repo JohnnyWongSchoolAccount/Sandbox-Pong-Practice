@@ -24,7 +24,7 @@ class Paddle extends Rectangle {
     if ( sp == width ) goalX = sp - goalWidth;
     float startPositionDifferent = ( 0.25 );//has to be decimal
     this.h = (playAreaHeight * startPositionDifferent);
-    this.y = (playAreaY/2) + (playAreaHeight/2) - (h/2);
+    this.y = (playAreaY) + (playAreaHeight/2) - (h/2);
     this.paddleTravel = (playAreaHeight/50);//paddle speed
     this.c = randomColor();
   }

@@ -3,19 +3,21 @@ class Firework extends Circle {
   float  gravity = 0.0;
   float xVelocity, yVelocity;
   //
-  Firework (float x, float y, float w, float h, color c, float g) {
+  Firework (float x, float y, float w, float h, color c) {
     super(x, y, w, h, c);
+  //Add gravity to how the Fireworks.move()
+  }//Fireworks
+  //Methods
+  float firstBallW;
+  void valuesProduce(float x, float y, float firstBallWidth, float g) {
+    firstBallW = firstBallWidth;
     this.xVelocity = random(-5, 5);
     this.yVelocity = random(-5, 5);
     gravity = g;
     this.x = x;
     this.y = y;
     this.c = randomColor(); //RGB color
-    this.w = random(firstBall.w/1.1);
-  //Add gravity to how the Fireworks.move()
-  }//Fireworks
-  //Methods
-  void valuesProduce() {
+    this.w = random(firstBallW/1.1);
   }
   void drawing() {
     fill(c);
@@ -44,7 +46,8 @@ class Firework extends Circle {
   void explosions(float xParameter, float yParameter, float wParameter) { //firework effect when goal region hit
   if (xParameter <= ((wParameter)+(width/10)) || xParameter >= ((width*9)/10)-(wParameter)) {
     for (int i=0; i < firework.length; i++) 
-    firework[i] = new Firework(xParameter, yParameter, 0, 0, 0, 0.5); //drawing multiple balls
+    //firework[i] = new Firework(xParameter, yParameter, 0, 0, 0); //drawing multiple balls
+    valuesProduce(xParameter, yParameter, wParameter, 0.5);
   }
   /*if (!cheatBall.disappear) {
     if (cheatBall.ballX <= ((cheatBall.ballDiameter/2)+(width/10)) || cheatBall.ballX >= ((width*9)/10)-(cheatBall.ballDiameter/2)) {

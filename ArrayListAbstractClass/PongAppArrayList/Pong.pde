@@ -10,9 +10,9 @@ Button quit, pauseGame;
 //
 void setupPong() {
   pongPlayArea = new PongPlayArea(width/2-((width*2)/5), height/10, (width*4)/5, (height*7)/10, secondaryColor);
-  firstBall = new Ball(pongPlayArea.x+(pongPlayArea.w/2)-(height/50), pongPlayArea.y+(pongPlayArea.h/2)-(height/50), 0, 0, 0);
+  firstBall = new Ball(pongPlayArea.x+(pongPlayArea.w/2)+(height/50), pongPlayArea.y+(pongPlayArea.h/2)+(height/50), 0, 0, 0);
   secondBall = new Ball(width*1.1, height*1.1, 0, 0, 0, firstBall.xVelocity, firstBall.yVelocity);
-  for (int i=0; i < firework.length; i++) firework[i] = new Firework(width*1.1, height*1.1, 0, 0, 0, 0.5);
+  for (int i=0; i < firework.length; i++) firework[i] = new Firework(width*1.1, height*1.1, 0, 0, 0);
   firstPaddle = new Paddle(0, 0, 0, 0, 0);
   secondPaddle = new Paddle(0, 0, 0, 0, 0);
   firstPaddle.valuesProduce(width/10, firstBall.w, pongPlayArea.y, pongPlayArea.h);

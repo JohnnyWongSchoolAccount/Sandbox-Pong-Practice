@@ -87,12 +87,12 @@ class Ball extends Circle {
         scoreRight++;
         scoreRightText = String.valueOf(scoreRight);//converts int to string to print
         toCenter();
-        //pongGameOn = false;
+        pongGameOn = false;
       } else  {
         scoreLeft++;
         scoreLeftText = String.valueOf(scoreLeft);//converts int to string to print
         toCenter();
-        //pongGameOn = false;
+        pongGameOn = false;
       }
     }
   }//end winCondition
@@ -106,9 +106,9 @@ class Ball extends Circle {
       x = paddleX + paddleW;
       xVelocity *= -1;
     }
-    if (x+w/2 >= paddleX1 && x <= paddleX1+paddleW1 && y >= paddleY1 && y <= paddleY1+paddleH1) {
+    if (x >= paddleX1+(paddleW1/2) && x <= (paddleX1+(w/2))+(paddleW1/2) && y >= paddleY1 && y <= paddleY1+paddleH1) {
       //if (pongGameOn) secondPaddle.paddleColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
-      x = paddleX1 - w/2;
+      x = paddleX1;
       xVelocity *= -1;
     }
   /* Features
