@@ -50,8 +50,8 @@ class Ball extends Circle {
     color nightMode = 0;
     return nightMode;
   }//end Night Mode Color Selector
-    void bounce() {
-    if (x <= ((w/2)+(width/10)) || firstBall.x >= ((width*9)/10)-(w/2)) c = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
+  void bounce() {
+    //if (x <= ((w/2)+(width/10)) || firstBall.x >= ((width*9)/10)-(w/2)) c = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
     if (x <= ((w/2)+(width/10)) || x >= ((width*9)/10)-(w/2)) (xVelocity) *= -1;
     if (y <= ((height/10)+(w/2)) || y >= ((height*7)/10+height/10)-(w/2)) (yVelocity) *= -1;
   }//end bounce
@@ -71,7 +71,7 @@ class Ball extends Circle {
   }//end collisonsUpdate
   float paddleX, paddleY, paddleW, paddleH;
   float paddleX1, paddleY1, paddleW1, paddleH1;
-  void collisionUpdate(float x, float y, float w, float h, float x1, float y1, float w1, float h1) {
+  void variablesUpdate(float x, float y, float w, float h, float x1, float y1, float w1, float h1) {
     paddleX = x;
     paddleY = y;
     paddleW = w;
@@ -80,7 +80,7 @@ class Ball extends Circle {
     paddleY1 = y1;
     paddleW1 = w1;
     paddleH1 = h1;
-  }//end collisionUpdate
+  }//end variablesUpdate
   void winCondition() {
     if (x <= ((w/2)+(width/10)) || x >= ((width*9)/10)-(w/2)) {
       if (x >= ((width*9)/10)-(w/2)) {

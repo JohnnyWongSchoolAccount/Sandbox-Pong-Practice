@@ -4,6 +4,7 @@ class Button extends Rectangle {
   Button (float x, float y, float w, float h, color c) {
     super(x, y, w, h, c);
   }//end Button
+  void variablesUpdate(float v0, float v1, float v2, float v3, float v4, float v5, float v6, float v7) {}
   //Methods
   void drawing() {
     noStroke();

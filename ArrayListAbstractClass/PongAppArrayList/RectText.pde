@@ -10,11 +10,10 @@ class ScoreKeep extends Rectangle {
   }//end Scoreboard
   //
   //Methods
+  void variablesUpdate(float v0, float v1, float v2, float v3, float v4, float v5, float v6, float v7) {}
   void drawing() {
     fill(c);
     rect(x, y, w, h);
-    if (pongGameOn) firstBall.winCondition();
-    //if (pongGameOn) cheatBall.winCondition();
     rectText(scoreLeftText, leftScoreKeep.y);
     rectText(scoreRightText, rightScoreKeep.y);
   }//end drawing

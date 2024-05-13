@@ -8,6 +8,7 @@ class Firework extends Circle {
   //Add gravity to how the Fireworks.move()
   }//Fireworks
   //Methods
+  void variablesUpdate(float v0, float v1, float v2, float v3, float v4, float v5, float v6, float v7) {}
   float firstBallW;
   void valuesProduce(float x, float y, float firstBallWidth, float g) {
     firstBallW = firstBallWidth;
@@ -31,16 +32,16 @@ class Firework extends Circle {
     return nightMode;
   }//end backgroundColor
   //
-  void bounce() {
+  /*void bounce() {
     if (x <= ((w/2)+(width/10)) || x >= ((width*9)/10)-(w/2)) (xVelocity) *= -1;
     if (y <= ((pongPlayArea.y)+(w/2)) || y >= (height*8/10)-(w/2)) (yVelocity) *= -1;
-  }//end bounce
+  }//end bounce*/
   void moving() {
     yVelocity += gravity;
     x += (xVelocity);
     y += (yVelocity);
     //for (int i=0; i < firework.length; i++) firework[i].ballDiameter -= (ballDiameter/4);
-    bounce();
+    //bounce();
   }//end moving
   //
   void explosions(float xParameter, float yParameter, float wParameter) { //firework effect when goal region hit

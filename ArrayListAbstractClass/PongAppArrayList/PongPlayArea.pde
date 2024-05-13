@@ -6,6 +6,7 @@ class PongPlayArea extends Rectangle {
   }//end PongPlayArea
   //
   //Methods
+  void variablesUpdate(float v0, float v1, float v2, float v3, float v4, float v5, float v6, float v7) {}
   void drawing() {
     fill(c);
     noStroke();
