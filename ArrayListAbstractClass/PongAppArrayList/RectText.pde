@@ -10,32 +10,43 @@ class ScoreKeep extends Rectangle {
   }//end Scoreboard
   //
   //Methods
-  void variablesUpdate(float v0, float v1, float v2, float v3, float v4, float v5, float v6, float v7) {}
   void drawing() {
     fill(c);
     rect(x, y, w, h);
-    rectText(scoreLeftText, leftScoreKeep.y);
-    rectText(scoreRightText, rightScoreKeep.y);
+    scoreKeeper();
+    println(scoreLeft);
+    if (y == sry) rectText(str(scoreRight));
+    if (y == sly) rectText(str(scoreLeft));
   }//end drawing
-  int scoreLeft, scoreRight;
-  String scoreLeftText, scoreRightText;
-  void scoreKeepUpdate(int sL, int sR, String sLT, String sRT) {
-    scoreLeft = sL;
-    scoreRight = sR;
-    scoreLeftText = sRT;
-    scoreRightText = sLT;
-  }//end scoreKeepUpdate
+  void scoreKeeper() {
+    if (winConRight) {
+      scoreRight++;
+      winConRight = false;
+    }
+    if (winConLeft) {
+      scoreLeft++;
+      winConLeft = false;
+    }
+  }//end scoreKeeper
+  //
+  void mousePressed() {}//end mousePressed
+  //
+  void keyPressed() {}//end keyPressed
+  //
+  void keyReleased()  {}//end keyReleased
+  //
+  float sly, sry;
+  void variablesUpdate(float v0, float v1, float v2, float v3, float v4, float v5, float v6, float v7) {
+    sly = v0;
+    sry = v1;
+  }//end variablesUpdate
   //
   color backgroundColor() {
     color nightMode = 0;
     return nightMode;
   }//end backgroundColor
-  void rectText(String firstText, float yParameter) {
-    drawText( height, ink, CENTER, CENTER, Font, textSpace+firstText+textSpace, x, yParameter, w, h);
+  void rectText(String firstText) {
+    drawText( height, ink, CENTER, CENTER, Font, textSpace+textSpace+firstText+textSpace+textSpace, x, y, w, h);
   }//end rectText
-  //
-  /* Features:
-   - Any Easter Eggs
-   */
 }//end Scoreboard
 //end rectText subProgram

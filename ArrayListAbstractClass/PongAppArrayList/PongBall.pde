@@ -1,18 +1,16 @@
 class Ball extends Circle {
   //Global Variables
   float xVelocity, yVelocity;
-  int scoreLeft = 0, scoreRight = 0;
-  String scoreLeftText = "0", scoreRightText = "0";
   boolean disappear;
-  //color ballColor;
+  Firework firework;
   //
   Ball(float x, float y, float w, float h, color c) {
     super(x, y, w, h, c);
     int referentMeasures = (width<height) ? (width):(height); //ternary Operator = chooses the smaller value
     //object variables //this is "new Ball()"
     this.w = referentMeasures/25;
-    this.xVelocity = xDirection();
-    this.yVelocity = yDirection();
+    this.xVelocity = xDirection()*3;
+    this.yVelocity = yDirection()*3;
     this.c = randomColor();
   }//end Ball
   Ball(float x, float y, float w, float h, color c, float xV, float yV) {
@@ -21,27 +19,36 @@ class Ball extends Circle {
     this.y = y;
     this.w = w;
     this.c = randomColor();
-    this.xVelocity = xDirection();
-    this.yVelocity = yDirection();
+    this.xVelocity = xDirection()*3;
+    this.yVelocity = yDirection()*3;
   }//end cheatBall
   //Methods
   void drawing() {
     fill(c);
     ellipse(x, y, w, w);
     if (pongGameOn) moving();
+    if (!disappear) winCondition(); 
+    explosions();
     fill(colorReset);
   }//end draw
+  //
+  void mousePressed() {}//end mousePressed
+  //
+  void keyPressed() {}//end keyPressed
+  //
+  void keyReleased()  {}//end keyReleased
+  //
   float xDirection() {
-    float xDirectionLocal = int(random(-6, 6));
+    float xDirectionLocal = int(random(-2, 2));
     while (xDirectionLocal == 0) {
-      xDirectionLocal = int(random(-6, 6));
+      xDirectionLocal = int(random(-2, 2));
     }
     return xDirectionLocal;
   }//end xDirection
   float yDirection() {
-    float yDirectionLocal = int(random(-6, 6));
+    float yDirectionLocal = int(random(-2, 2));
     while (yDirectionLocal == 0) {
-      yDirectionLocal = int(random(-6, 6));
+      yDirectionLocal = int(random(-2, 2));
     }
     return yDirectionLocal;
   }//end yDirection
@@ -52,7 +59,7 @@ class Ball extends Circle {
   }//end Night Mode Color Selector
   void bounce() {
     //if (x <= ((w/2)+(width/10)) || firstBall.x >= ((width*9)/10)-(w/2)) c = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
-    if (x <= ((w/2)+(width/10)) || x >= ((width*9)/10)-(w/2)) (xVelocity) *= -1;
+    if (x <= (playAreaX+w/2) || x >= playAreaX+playAreaW-w/2) (xVelocity) *= -1;
     if (y <= ((height/10)+(w/2)) || y >= ((height*7)/10+height/10)-(w/2)) (yVelocity) *= -1;
   }//end bounce
   void moving() {
@@ -82,23 +89,28 @@ class Ball extends Circle {
     paddleH1 = h1;
   }//end variablesUpdate
   void winCondition() {
-    if (x <= ((w/2)+(width/10)) || x >= ((width*9)/10)-(w/2)) {
-      if (x >= ((width*9)/10)-(w/2)) {
-        scoreRight++;
-        scoreRightText = String.valueOf(scoreRight);//converts int to string to print
+    if (this.x <= (playAreaX+w/2) || this.x >= (playAreaX+playAreaW-w/2)) {
+      if (this.x <= (playAreaX+w/2)) {
+        winConLeft = true;
         toCenter();
         pongGameOn = false;
-      } else  {
-        scoreLeft++;
-        scoreLeftText = String.valueOf(scoreLeft);//converts int to string to print
+      } else {
+        winConRight = true;
         toCenter();
         pongGameOn = false;
       }
     }
   }//end winCondition
+  void explosions() {
+    if (this.x <= (playAreaX+w/2) || this.x >= (playAreaX+playAreaW-w/2)) {
+      firework = new Firework(x, y, w, w, c);
+      firework.variablesUpdate(w, 0.5, x, y, 0, 0, 0, 0);
+      firework.drawing();
+    }
+  }//end explosions
   void toCenter() {
-    x = playAreaX+(playAreaW/2)-(height/50);
-    y = playAreaY+(playAreaH/2)-(height/50);
+    x = playAreaX+(playAreaW/2);
+    y = playAreaY+(playAreaH/2);
   }//end toCenter
   void collisionsPaddle() {
     if (x+w >= paddleX && x <= paddleX+paddleW && y >= paddleY && y <= paddleY+paddleH) {

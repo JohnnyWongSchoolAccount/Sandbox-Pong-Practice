@@ -1,42 +1,74 @@
 class Paddle extends Rectangle {
   //Global Variables
+  float ballW;
   float goalX, goalY, goalWidth, goalHeight;
   float paddleTravel;
-  boolean paddleUp = false, paddleDown = false;//keyPressed in draw
+  Boolean paddleUp = false, paddleDown = false;//keyPressed in draw
   float playAreaY;//smallest Y value for paddle movement height/10
   float playAreaHeight;
+  float pongPlayAreaMiddle;
   //
   Paddle (float x, float y, float w, float h, color c) {
     super(x, y, w, h, c);
-  }//end Paddle
+  } //End Paddle
   //
   //Methods
-  void variablesUpdate(float v0, float v1, float v2, float v3, float v4, float v5, float v6, float v7) {}
-  float ballW;
-  void valuesProduce(float sp, float ballWidth, float playAreaYParameter, float playAreaH) {
-    ballW = ballWidth;
-    playAreaY = playAreaYParameter;//smallest Y value for paddle movement height/10
-    playAreaHeight = playAreaH;
-    goalWidth = (ballW*3);
-    this.w = (ballW/2); //Ball Radius
-    if ( sp == width/10 ) goalX = sp; //Adding to the knotX
-    if ( sp == (((width*9)/10)) ) goalX = sp - (goalWidth*2) - w; //Subtracting the knotX
-    this.x = (goalX) + (goalWidth); //netX has two values, fix ERROR
-    if ( sp == width ) goalX = sp - goalWidth;
-    float startPositionDifferent = ( 0.25 );//has to be decimal
-    this.h = (playAreaHeight * startPositionDifferent);
-    this.y = (playAreaY) + (playAreaHeight/2) - (h/2);
-    this.paddleTravel = (playAreaHeight/50);//paddle speed
-    this.c = randomColor();
-  }
-  //
   void drawing() {
     fill(c);
-    rect(x, y, w, h);
-    fill(colorReset);
-    if (pongGameOn) paddleMove();
-  }//end drawing
-  
+    if ( x < pongPlayAreaMiddle ) {
+      rect( x, y, w, h); //Note: drawing paddle must change
+    } else {
+      rect( x, y, w, h); //Note: drawing paddle must change
+    }
+    if (pongOn) paddleMove();
+  } //End draw
+  //
+  void mousePressed() {}//end mousePressed
+  //
+  void keyPressed() {
+    if (x < pongPlayAreaMiddle) {
+      if (key == 'w' || key == 'W') {
+        this.paddleDown = false;
+        this.paddleUp = true;
+      }
+      if ( key == 's' || key == 'S') {
+        this.paddleUp = false;
+        this.paddleDown = true;
+      }
+    } else  {
+      if (key == CODED && keyCode == UP) {
+        this.paddleDown = false;
+        this.paddleUp = true;
+      }
+      if (key == CODED && keyCode == DOWN) {
+        this.paddleUp = false;
+        this.paddleDown = true;
+      }
+    }
+  }//end keyPressed
+  //
+  void keyReleased()  {
+    if (x < pongPlayAreaMiddle) {
+      if (key == 'w' || key == 'W') {
+        this.paddleDown = false;
+        this.paddleUp = false;
+      }
+      if ( key == 's' || key == 'S') {
+        this.paddleUp = false;
+        this.paddleDown = false;
+      }
+    } else  {
+      if (key == CODED && keyCode == UP) {
+        this.paddleDown = false;
+        this.paddleUp = false;
+      }
+      if (key == CODED && keyCode == DOWN) {
+        this.paddleUp = false;
+        this.paddleDown = false;
+      }
+    }
+  }//end keyReleased
+  //
   void paddleMove() {
     if (paddleUp) paddleUp();
     if (paddleDown) paddleDown();
@@ -49,30 +81,41 @@ class Paddle extends Rectangle {
     y += (paddleTravel);//moving down
     if (y > playAreaY+playAreaHeight-h) y = playAreaY+playAreaHeight-h;//error catch: will not go off screen
   }//end paddleDown
-  void paddleKeyPressedWASD() {
-    if (key == 'w' || key == 'W') firstPaddle.paddleUp = true;
-    if (key == 's' || key == 'S') firstPaddle.paddleDown = true; 
-  }//end paddleKeyPressedWASD
-  void paddleKeyPressedARROWKEYS() {
-    if (key == CODED & keyCode == UP) secondPaddle.paddleUp = true;
-    if (key == CODED & keyCode == DOWN) secondPaddle.paddleDown = true;
-  }//end paddleKeyPressedARROWKEYS
-  void paddleKeyReleasedWSAD() {
-    if (key == 'w' || key == 'W') firstPaddle.paddleUp = false;
-    if (key == 's' || key == 'S') firstPaddle.paddleDown = false; 
-  }//end paddleKeyReleasedWSAD
-  void paddleKeyReleasedARROWKEYS() {
-    if (key == CODED & keyCode == UP) secondPaddle.paddleUp = false;
-    if (key == CODED & keyCode == DOWN) secondPaddle.paddleDown = false;
-  }//end paddleKeyReleasedARROWKEYS
+  /* Features:
+   - Give Ball X-variable to bounce between two y-variables
+   */
+  //Getters and Setters
+  void variablesUpdate( float pongPlayAreaMiddleParameter, float xNetValue, float sp, float ballw, float playAreaYParameter, float playAreaH, float v7, float v8) {
+    ballW = ballw;
+    playAreaY = playAreaYParameter;//smallest Y value for paddle movement height/10
+    playAreaHeight = playAreaH;
+    pongPlayAreaMiddle = pongPlayAreaMiddleParameter;
+    goalWidth = (ballW*3);
+    float startPositionDifferent = ( 0.25 );//has to be decimal
+    this.h = (playAreaHeight * startPositionDifferent);
+    this.y = (playAreaY) + (playAreaHeight/2) - (h/2);
+    this.w = (ballW/2); //Ball Radius
+    if ( sp < pongPlayAreaMiddleParameter ) { //NOTE: var==NULL, IF == false
+      goalX = sp;
+      plt = y;
+      plb = y+h;
+      el += xNetValue+w;
+    } else {
+      goalX = sp - (goalWidth*2) - w;
+      prt = y;
+      prb = y+h;
+      x -= w;
+      er += xNetValue-w;
+    }
+    //if ( sp == width ) goalX = sp - goalWidth;
+    this.x = (goalX) + (goalWidth);
+    this.paddleTravel = (playAreaHeight/50);//paddle speed
+    this.c = randomColor();
+  } //End Paddle X Update
   //
   color backgroundColor() {
     color nightMode = 0;
     return nightMode;
   }//end backgroundColor
-  //
-  /* Features:
-   - Give Ball X-variable to bounce between two y-variables
-   */
-}//end Paddle
+} //End Paddle
 //end Paddle SubProgram

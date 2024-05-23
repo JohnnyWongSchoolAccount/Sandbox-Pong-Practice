@@ -4,17 +4,47 @@ class Button extends Rectangle {
   Button (float x, float y, float w, float h, color c) {
     super(x, y, w, h, c);
   }//end Button
-  void variablesUpdate(float v0, float v1, float v2, float v3, float v4, float v5, float v6, float v7) {}
   //Methods
   void drawing() {
     noStroke();
-    rect(x, y, w, h);
+    if (x == quitX) {
+      color quitOn = #ff1919;
+      color quitOff = #00b530;
+      drawing(quitOn, quitOff);
+      rectText("Quit");
+    }
+    if (x == menuToPongX) {
+      drawing(hoverOver, secondaryColor);
+      rectSwitchingText("Pong", "Menu", portOn);
+    }
+    if (x == pauseX) {
+      drawing(hoverOver, secondaryColor);
+      rectSwitchingText("PAUSE", "PLAY", pongGameOn);
+    }
     fill(colorReset);
   }//end Drawing
+  //
+  void mousePressed() {
+    if (x == quitX) mousePressedExitFunction();
+    if (x == menuToPongX) mousePressedMenuToPongFunction();
+    if (x == pauseX) mousePressedPauseGameFunction();
+  }//end mousePressed
+  //
+  void keyPressed() {}//end keyPressed
+  //
+  void keyReleased()  {}//end keyReleased
+  //
+  float quitX, menuToPongX, pauseX;
+  void variablesUpdate(float v0, float v1, float v2, float v3, float v4, float v5, float v6, float v7) {
+    quitX = v0;
+    menuToPongX = v1;
+    pauseX = v2;
+  }//end variablesUpdate
+  //
   void drawing(color hoverOver, color buttonColor) {
     if ( mouseX>=x && mouseX<=x+w && mouseY>=y && mouseY<=y+h )
     {fill(hoverOver);} else {fill(buttonColor);}
-    drawing();
+    rect(x, y, w, h);
   }//end drawing
   void mousePressedExitFunction() {
     if ( mouseX>=x && mouseX<=x+w && mouseY>= y && mouseY<=y+h )
