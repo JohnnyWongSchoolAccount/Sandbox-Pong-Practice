@@ -17,17 +17,19 @@ class Button extends Rectangle {
       drawing(hoverOver, secondaryColor);
       rectSwitchingText("Pong", "Menu", portOn);
     }
-    if (x == pauseX) {
-      drawing(hoverOver, secondaryColor);
-      rectSwitchingText("PAUSE", "PLAY", pongGameOn);
-    }
+    if (pongOn) {
+      if (x == pauseX) {
+        drawing(hoverOver, secondaryColor);
+        rectSwitchingText("PAUSE", "PLAY", pongGameOn);
+      }
     fill(colorReset);
+    }
   }//end Drawing
   //
   void mousePressed() {
     if (x == quitX) mousePressedExitFunction();
     if (x == menuToPongX) mousePressedMenuToPongFunction();
-    if (x == pauseX) mousePressedPauseGameFunction();
+    if (x == pauseX && pongOn) mousePressedPauseGameFunction();
   }//end mousePressed
   //
   void keyPressed() {}//end keyPressed

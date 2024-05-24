@@ -18,6 +18,9 @@ void setupPort() {
 }//end setupPong
 void drawPort() {
   if (portOn) drawPortOn();
+  for ( Shape s : shapes ) {
+    s.drawing();
+  }
 }//end drawPong
 void mousePressedPort() {
   for ( Shape s : shapes ) {

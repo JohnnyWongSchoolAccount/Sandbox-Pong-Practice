@@ -14,6 +14,9 @@ class Paddle extends Rectangle {
   //
   //Methods
   void drawing() {
+    if (pongOn) draw();
+  }//end draw
+  void draw() {
     fill(c);
     if ( x < pongPlayAreaMiddle ) {
       rect( x, y, w, h); //Note: drawing paddle must change

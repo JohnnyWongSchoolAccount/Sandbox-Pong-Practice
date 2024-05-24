@@ -11,6 +11,9 @@ class ScoreKeep extends Rectangle {
   //
   //Methods
   void drawing() {
+    if (pongOn) draw();
+  }//end draw
+  void draw() {
     fill(c);
     rect(x, y, w, h);
     scoreKeeper();

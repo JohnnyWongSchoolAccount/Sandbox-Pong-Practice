@@ -51,10 +51,7 @@ void keyReleasedPong() {
 //
 void drawPongOn() {
   background(background);
-  for ( Shape s : shapes ) {
-    shapes.get(3).variablesUpdate(shapes.get(5).x, shapes.get(5).y, shapes.get(5).w, shapes.get(5).h, shapes.get(6).x, shapes.get(6).y, shapes.get(6).w, shapes.get(6).h);
-    s.drawing();
-  }
+  shapes.get(3).variablesUpdate(shapes.get(5).x, shapes.get(5).y, shapes.get(5).w, shapes.get(5).h, shapes.get(6).x, shapes.get(6).y, shapes.get(6).w, shapes.get(6).h);
 }//end drawPong
 void mousePressedPongOn() {}//end mousePressedPong
 void keyPressedPongOn() {

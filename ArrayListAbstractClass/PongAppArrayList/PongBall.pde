@@ -12,6 +12,8 @@ class Ball extends Circle {
     this.xVelocity = xDirection()*3;
     this.yVelocity = yDirection()*3;
     this.c = randomColor();
+    firework = new Firework(x, y, w, w, c);
+    firework.variablesUpdate(w, 0.5, x, y, 0, 0, 0, 0);
   }//end Ball
   Ball(float x, float y, float w, float h, color c, float xV, float yV) {
     super(x, y, w, h, c);
@@ -24,15 +26,20 @@ class Ball extends Circle {
   }//end cheatBall
   //Methods
   void drawing() {
+    if (pongOn) draw();
+  }//end draw
+  void draw() {
     fill(c);
     ellipse(x, y, w, w);
     if (pongGameOn) moving();
     if (!disappear) winCondition(); 
-    explosions();
+    if (!disappear) explosions();
     fill(colorReset);
   }//end draw
   //
-  void mousePressed() {}//end mousePressed
+  void mousePressed() {
+    explosions();
+  }//end mousePressed
   //
   void keyPressed() {}//end keyPressed
   //
@@ -92,11 +99,11 @@ class Ball extends Circle {
     if (this.x <= (playAreaX+w/2) || this.x >= (playAreaX+playAreaW-w/2)) {
       if (this.x <= (playAreaX+w/2)) {
         winConLeft = true;
-        toCenter();
+        //toCenter();
         pongGameOn = false;
       } else {
         winConRight = true;
-        toCenter();
+        //toCenter();
         pongGameOn = false;
       }
     }
@@ -104,7 +111,7 @@ class Ball extends Circle {
   void explosions() {
     if (this.x <= (playAreaX+w/2) || this.x >= (playAreaX+playAreaW-w/2)) {
       firework = new Firework(x, y, w, w, c);
-      firework.variablesUpdate(w, 0.5, x, y, 0, 0, 0, 0);
+      
       firework.drawing();
     }
   }//end explosions
