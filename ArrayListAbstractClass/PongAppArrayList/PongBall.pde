@@ -1,7 +1,6 @@
 class Ball extends Circle {
   //Global Variables
   float xVelocity, yVelocity;
-  boolean disappear;
   Firework firework;
   //
   Ball(float x, float y, float w, float h, color c) {
@@ -12,8 +11,6 @@ class Ball extends Circle {
     this.xVelocity = xDirection()*3;
     this.yVelocity = yDirection()*3;
     this.c = randomColor();
-    firework = new Firework(x, y, w, w, c);
-    firework.variablesUpdate(w, 0.5, x, y, 0, 0, 0, 0);
   }//end Ball
   Ball(float x, float y, float w, float h, color c, float xV, float yV) {
     super(x, y, w, h, c);
@@ -21,8 +18,8 @@ class Ball extends Circle {
     this.y = y;
     this.w = w;
     this.c = randomColor();
-    this.xVelocity = xDirection()*3;
-    this.yVelocity = yDirection()*3;
+    this.xVelocity = xV/2;//garentees the second ball will not unfairly move towards the paddle at the same time as the first ball
+    this.yVelocity = yV/2;//garentees the second ball will not unfairly move towards the paddle at the same time as the first ball
   }//end cheatBall
   //Methods
   void drawing() {
@@ -30,20 +27,34 @@ class Ball extends Circle {
   }//end draw
   void draw() {
     fill(c);
-    ellipse(x, y, w, w);
-    if (pongGameOn) moving();
-    if (!disappear) winCondition(); 
-    if (!disappear) explosions();
+    if (!disappear) {
+      ellipse(x, y, w, w);
+      winCondition(); 
+      if (pongGameOn) moving();
+    }
+    explosions();
+    if (!pongGameOn) firework.drawing();
     fill(colorReset);
   }//end draw
   //
   void mousePressed() {
-    explosions();
+    if ( mouseX>=playAreaX+(w/2.1) && mouseX<=playAreaX+playAreaW-(w/2.1) && mouseY>=playAreaY+(w/2) && mouseY<=playAreaY+playAreaH-(w/2) && pongGameOn) {
+      shapes.get(10).disappear = false;
+      shapes.get(10).x = mouseX;
+      shapes.get(10).y = mouseY;
+    }
   }//end mousePressed
   //
-  void keyPressed() {}//end keyPressed
+  void keyPressed() {
+    if (key == '2') shapes.get(7).disappear = true;
+  }//end keyPressed
   //
   void keyReleased()  {}//end keyReleased
+  //
+  void reset() {
+    toCenter();
+    shapes.get(10).disappear = true;
+  }//end reset
   //
   float xDirection() {
     float xDirectionLocal = int(random(-2, 2));
@@ -66,13 +77,12 @@ class Ball extends Circle {
   }//end Night Mode Color Selector
   void bounce() {
     //if (x <= ((w/2)+(width/10)) || firstBall.x >= ((width*9)/10)-(w/2)) c = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
-    if (x <= (playAreaX+w/2) || x >= playAreaX+playAreaW-w/2) (xVelocity) *= -1;
-    if (y <= ((height/10)+(w/2)) || y >= ((height*7)/10+height/10)-(w/2)) (yVelocity) *= -1;
+    if (this.x <= (playAreaX+this.w/2) || this.x >= playAreaX+playAreaW-this.w/2) (xVelocity) *= -1;
+    if (this.y <= ((playAreaY)+(this.w/2)) || this.y >= (playAreaY+playAreaH)-(this.w/2)) (yVelocity) *= -1;
   }//end bounce
   void moving() {
     x += (xVelocity);
     y += (yVelocity);
-    //for (int i=0; i < firework.length; i++) firework[i].w -= (w/4);
     bounce();
     collisionsPaddle();
   }//end animatingMovement
@@ -85,7 +95,7 @@ class Ball extends Circle {
   }//end collisonsUpdate
   float paddleX, paddleY, paddleW, paddleH;
   float paddleX1, paddleY1, paddleW1, paddleH1;
-  void variablesUpdate(float x, float y, float w, float h, float x1, float y1, float w1, float h1) {
+  void variablesUpdate(float x, float y, float w, float h, float x1, float y1, float w1, float h1, float v8) {
     paddleX = x;
     paddleY = y;
     paddleW = w;
@@ -99,25 +109,38 @@ class Ball extends Circle {
     if (this.x <= (playAreaX+w/2) || this.x >= (playAreaX+playAreaW-w/2)) {
       if (this.x <= (playAreaX+w/2)) {
         winConLeft = true;
-        //toCenter();
+        toCenter();
         pongGameOn = false;
       } else {
         winConRight = true;
-        //toCenter();
+        toCenter();
         pongGameOn = false;
       }
     }
   }//end winCondition
+  boolean executed = false;
   void explosions() {
-    if (this.x <= (playAreaX+w/2) || this.x >= (playAreaX+playAreaW-w/2)) {
+    if (!executed) {
       firework = new Firework(x, y, w, w, c);
-      
-      firework.drawing();
+      executed = true;
+    }
+    if (winConRight || winConLeft) {
+      if (!disappear) {
+        firework = new Firework(x, y, w, w, c);
+        firework.variablesUpdate(w, 0.5, x, y, playAreaX, playAreaY, playAreaW, playAreaH, 0);
+      }
     }
   }//end explosions
   void toCenter() {
-    x = playAreaX+(playAreaW/2);
-    y = playAreaY+(playAreaH/2);
+    if (shapes.get(10).disappear) {
+      this.x = playAreaX+(playAreaW/2);
+      this.y = playAreaY+(playAreaH/2);
+    } else {
+      shapes.get(9).x = playAreaX+(playAreaW/2);
+      shapes.get(9).y = playAreaY+(playAreaH/2)-(w);
+      shapes.get(10).x = playAreaX+(playAreaW/2);
+      shapes.get(10).y = playAreaY+(playAreaH/2)+(w);
+    }
   }//end toCenter
   void collisionsPaddle() {
     if (x+w >= paddleX && x <= paddleX+paddleW && y >= paddleY && y <= paddleY+paddleH) {
@@ -125,14 +148,11 @@ class Ball extends Circle {
       x = paddleX + paddleW;
       xVelocity *= -1;
     }
-    if (x >= paddleX1+(paddleW1/2) && x <= (paddleX1+(w/2))+(paddleW1/2) && y >= paddleY1 && y <= paddleY1+paddleH1) {
+    if (x >= paddleX1-(paddleW1/4) && x <= (paddleX1+(w/2)) && y >= paddleY1 && y <= paddleY1+paddleH1) {
       //if (pongGameOn) secondPaddle.paddleColor = color(int(random(0, 255)), int(random(0,255)), int(random(0,255)));
-      x = paddleX1;
+      x = paddleX1-paddleW1/2;
       xVelocity *= -1;
     }
-  /* Features
-   - Ball in net triggers FIREWORKS
-   */
   }//end collisionsPaddle
 }//end Ball
 //end PongBall subProgram

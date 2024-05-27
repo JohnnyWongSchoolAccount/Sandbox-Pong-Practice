@@ -1,55 +1,30 @@
-class ScoreKeep extends Rectangle {
+class RectText extends Rectangle {
   //Global Variables
-  //refMeasure, pongPause.rectY+pongPause.rectHeight+(refMeasure/2), height/8, height/8
-  ScoreKeep (float x, float y, float w, float h, color c) {
-    super(x, y, w, h, c);
-    this.x = refMeasure;
-    this.w = height/8;
-    this.h = height/8;
-    this.c = secondaryColor;
-  }//end Scoreboard
   //
+  RectText(float x, float y, float w, float h, color c) {
+    super(x, y, w, h, c);
+  }
   //Methods
   void drawing() {
-    if (pongOn) draw();
-  }//end draw
+    if (portOn) draw();
+  }//end drawing
   void draw() {
     fill(c);
     rect(x, y, w, h);
-    scoreKeeper();
-    println(scoreLeft);
-    if (y == sry) rectText(str(scoreRight));
-    if (y == sly) rectText(str(scoreLeft));
-  }//end drawing
-  void scoreKeeper() {
-    if (winConRight) {
-      scoreRight++;
-      winConRight = false;
-    }
-    if (winConLeft) {
-      scoreLeft++;
-      winConLeft = false;
-    }
-  }//end scoreKeeper
-  //
-  void mousePressed() {}//end mousePressed
-  //
+    rectText("( •, ^ •,) stop looking, this project sucks");
+    fill(colorReset);
+  }//end draw
   void keyPressed() {}//end keyPressed
-  //
-  void keyReleased()  {}//end keyReleased
-  //
-  float sly, sry;
-  void variablesUpdate(float v0, float v1, float v2, float v3, float v4, float v5, float v6, float v7) {
-    sly = v0;
-    sry = v1;
+  void keyReleased() {}//end keyReleased
+  void mousePressed() {}//end mousePressed
+  void reset() {}//end reset
+  void variablesUpdate(float v0, float v1, float v2, float v3, float v4, float v5, float v6, float v7, float v8) {
   }//end variablesUpdate
-  //
-  color backgroundColor() {
-    color nightMode = 0;
-    return nightMode;
-  }//end backgroundColor
   void rectText(String firstText) {
     drawText( height, ink, CENTER, CENTER, Font, textSpace+textSpace+firstText+textSpace+textSpace, x, y, w, h);
   }//end rectText
-}//end Scoreboard
-//end rectText subProgram
+  color backgroundColor() {
+    color nightMode = 0;
+    return nightMode;
+  }//end Night Mode Color Selector
+}//end RectText

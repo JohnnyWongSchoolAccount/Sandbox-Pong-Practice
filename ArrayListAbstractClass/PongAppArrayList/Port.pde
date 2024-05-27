@@ -10,11 +10,13 @@ void setupPort() {
   refMeasure = width/50;
   Button quit = new Button(width-width/10, 0, width/10, height/14, 0); 
   Button menuToPong = new Button(refMeasure, (height-(height/8 + refMeasure)), width/6, height/8, 0);
-  quit.variablesUpdate(quit.x, 0, 0, 0, 0, 0, 0, 0);
-  menuToPong.variablesUpdate(0, menuToPong.x, 0, 0, 0, 0, 0, 0);
+  RectText title = new RectText(width/2-(width*4/10), height/10, (width*4)/5, height/3, secondaryColor);
+  quit.variablesUpdate(quit.x, 0, 0, 0, 0, 0, 0, 0, 0);
+  menuToPong.variablesUpdate(0, menuToPong.x, 0, 0, 0, 0, 0, 0, 0 );
   //
   shapes.add(quit); //Element 0, quit
   shapes.add(menuToPong); //Element 1, menuToPong
+  shapes.add(title);//Element 2, title
 }//end setupPong
 void drawPort() {
   if (portOn) drawPortOn();
@@ -33,16 +35,21 @@ void keyPressedPort() {
 //
 void drawPortOn() {
   background(background);
+  for ( Shape s : shapes ) {
+    s.reset();
+  }
 }//end drawPong
 void mousePressedPortOn() {}//end mousePressedPong
 void keyPressedPortOn() {}//end keyPressedPong
 void portSwitch() {
   if (portOn) { 
     portOn = false; 
-    pongOn = true;
+    pongOn = false;
+    modeOn = true;
   } else { 
     portOn = true;
     pongOn = false;
+    modeOn = false;
   }
 }//end pongOnOffSwitch
 //end Port subProgram

@@ -27,12 +27,14 @@ class PongPlayArea extends Rectangle {
   //
   void keyReleased()  {}//end keyReleased
   //
+  void reset() {}//end reset
+  //
   color backgroundColor() { //See Night Mode
     color Color=#050500;
     return Color;
   }//end backgroundColor
   //Getters and Setters
-  void variablesUpdate( float netWidth, float variable2, float variable3, float variable4, float variable5, float variable6, float variable7, float variable8 ) {
+  void variablesUpdate( float netWidth, float v1, float v2, float v3, float v4, float v5, float v6, float v7, float v8) {
     leftNetX_Top = x+netWidth;
     leftNetY_Top = y;
     leftNetX_Bottom = leftNetX_Top;

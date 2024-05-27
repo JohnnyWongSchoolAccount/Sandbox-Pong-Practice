@@ -10,7 +10,7 @@ abstract class Shape {
   float plb; // left bottom paddle y-pixel
   float prt; // right top paddle y-pixel
   float prb; // right bottom paddle y-pixel
-  Boolean s; //Ball Stops Moving, set in Ball Class Only
+  boolean disappear;
   color c, colorReset;//Shape Color
   //
   Shape(float x, float y, float w, float h, color c) {
@@ -31,9 +31,11 @@ abstract class Shape {
   //
   abstract void keyReleased();
   //
+  abstract void reset();
+  //
   abstract color backgroundColor();
   //
-  abstract void variablesUpdate( float variable1, float variable2, float variable3, float variable4, float variable5, float variable6, float variable7, float variable8);
+  abstract void variablesUpdate( float variable1, float variable2, float variable3, float variable4, float variable5, float variable6, float variable7, float variable8, float variable9);
   //
 }//end Shape
 //end Shape subProgram

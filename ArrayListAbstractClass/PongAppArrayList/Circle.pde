@@ -14,7 +14,9 @@ abstract class Circle extends Shape {
   //
   abstract void keyReleased();
   //
-  abstract void variablesUpdate(float v0, float v1, float v2, float v3, float v4, float v5, float v6, float v7);
+  abstract void variablesUpdate(float v0, float v1, float v2, float v3, float v4, float v5, float v6, float v7, float v8);
+  //
+  abstract void reset();
   //
   abstract color backgroundColor();//end Night Mode Color Selector
   //

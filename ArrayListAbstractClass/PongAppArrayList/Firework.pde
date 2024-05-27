@@ -1,7 +1,9 @@
 class Firework extends Circle {
   //Global Variables
   float  gravity = 0.0;
-  int sparks = 20;
+  float firstBallW;
+  float playAreaX, playAreaY, playAreaW, playAreaH;
+  int sparks = 10;//the amount of balls generated
   float[] fx = new float[sparks];
   float[] fy = new float[sparks];
   float[] fw = new float[sparks]; 
@@ -11,17 +13,20 @@ class Firework extends Circle {
   //
   Firework (float x, float y, float w, float h, color c) {
     super(x, y, w, h, c);
-  //Add gravity to how the Fireworks.move()
   }//Fireworks
   //Methods
   void drawing() {
+    draw();
+  }//end draw
+  void draw() {
     for ( int i=0; i<fx.length; i++ ) {
-      println(fx[i], fy[i], fw[i], fw[i]);
       fill(fc[i]);
-      ellipse(fx[i], fy[i], fw[i], fw[i]);
+      if (fy[i] <= playAreaY+playAreaH-(fw[i]/2)) {//deletes the ball before it leaves the play area
+        ellipse(fx[i], fy[i], fw[i], fw[i]);
+      }
       fill(colorReset);
-      moving();
     }
+    moving();
   }//end draw
   //
   void mousePressed() {}//end mousePressed
@@ -30,60 +35,42 @@ class Firework extends Circle {
   //
   void keyReleased()  {}//end keyReleased
   //
-  void variablesUpdate(float ballW, float g, float xParameter, float yParameter, float v4, float v5, float v6, float v7) {
+  void reset() {}//end reset
+  //
+  void variablesUpdate(float ballW, float g, float xParameter, float yParameter, float v4, float v5, float v6, float v7, float v8) {
+    playAreaX = v4;
+    playAreaY = v5;
+    playAreaW = v6;
+    playAreaH = v7;
     firstBallW = ballW;
     for ( int i=0; i<fx.length; i++ ) {
-      this.xVelocity[i] = random(-5, 5);
-      this.yVelocity[i] = random(-5, 5);
       gravity = g;
       this.fx[i] = xParameter;
       this.fy[i] = yParameter;
+      this.xVelocity[i] = random(-5, 5);
+      this.yVelocity[i] = random(-5, 5);
       this.fc[i] = randomColor(); //RGB color
       this.fw[i] = random(ballW/1.1);
     }
   }//end variablesUpdate
-  float firstBallW;
-  /*void valuesProduce(float x, float y, float firstBallWidth, float g) {
-    firstBallW = firstBallWidth;
-    this.xVelocity = random(-5, 5);
-    this.yVelocity = random(-5, 5);
-    gravity = g;
-    this.x = x;
-    this.y = y;
-    this.c = randomColor(); //RGB color
-    this.w = random(firstBallW/1.1);
-  }*///end valuesProduce
-  //
   color backgroundColor() {
     color nightMode = 0;
     return nightMode;
   }//end backgroundColor
   //
-  /*void bounce() {
-    if (x <= ((w/2)+(width/10)) || x >= ((width*9)/10)-(w/2)) (xVelocity) *= -1;
-    if (y <= ((pongPlayArea.y)+(w/2)) || y >= (height*8/10)-(w/2)) (yVelocity) *= -1;
-  }//end bounce*/
+  void bounce() {
+    for ( int i=0; i<fx.length; i++ ) {
+      if (fx[i] <= ((fw[i]/2)+(playAreaX)) || fx[i] >= (playAreaX + playAreaW)-(fw[i]/2)) (xVelocity[i]) *= -1;
+      if (fy[i] <= ((playAreaY)+(fw[i]/2)) || fy[i] >= (playAreaY+playAreaH)-(fw[i]/2)) (yVelocity[i]) *= -1;
+    }
+  }//end bounce
   void moving() {
     for ( int i=0; i<fx.length; i++ ) {
       yVelocity[i] += gravity;
       fx[i] += (xVelocity[i]);
       fy[i] += (yVelocity[i]);
-      //for (int i=0; i < firework.length; i++) firework[i].ballDiameter -= (ballDiameter/4);
-      //bounce();
     }
+    bounce();
   }//end moving
-  //
-  void explosions(float xParameter, float yParameter, float wParameter) { //firework effect when goal region hit
-  if (xParameter <= ((wParameter)+(width/10)) || xParameter >= ((width*9)/10)-(wParameter)) {
-    //firework[i] = new Firework(xParameter, yParameter, 0, 0, 0); //drawing multiple balls
-    variablesUpdate(0, 0.5, xParameter, yParameter, wParameter, 0, 0, 0);
-  }
-  /*if (!cheatBall.disappear) {
-    if (cheatBall.ballX <= ((cheatBall.ballDiameter/2)+(width/10)) || cheatBall.ballX >= ((width*9)/10)-(cheatBall.ballDiameter/2)) {
-      for (int i=0; i < firework.length; i++) 
-      firework[i] = new Ball(cheatBall.ballX, cheatBall.ballY, 0.5); //drawing multiple balls
-    }
-  }*/
-  }//end explosions
 }//end Firework
 //end Firework subProgram

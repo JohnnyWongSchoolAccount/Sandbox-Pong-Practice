@@ -3,32 +3,39 @@ class Paddle extends Rectangle {
   float ballW;
   float goalX, goalY, goalWidth, goalHeight;
   float paddleTravel;
-  Boolean paddleUp = false, paddleDown = false;//keyPressed in draw
+  Boolean paddleUp = false, paddleDown = false;//keyPressed
   float playAreaY;//smallest Y value for paddle movement height/10
-  float playAreaHeight;
+  float playAreaH;
   float pongPlayAreaMiddle;
   //
   Paddle (float x, float y, float w, float h, color c) {
     super(x, y, w, h, c);
   } //End Paddle
-  //
   //Methods
   void drawing() {
     if (pongOn) draw();
   }//end draw
+  //
   void draw() {
     fill(c);
     if ( x < pongPlayAreaMiddle ) {
-      rect( x, y, w, h); //Note: drawing paddle must change
+      rect( x, y, w, h);
     } else {
-      rect( x, y, w, h); //Note: drawing paddle must change
+      rect( x, y, w, h);
     }
-    if (pongOn) paddleMove();
+    if (pongGameOn) paddleMove();
   } //End draw
   //
   void mousePressed() {}//end mousePressed
   //
   void keyPressed() {
+    if (!onePlayer) {
+      twoPlayerKeyPressed();
+    } else {
+      onePlayerKeyPressed();
+    }
+  }//end keyPressed
+  void twoPlayerKeyPressed() {
     if (x < pongPlayAreaMiddle) {
       if (key == 'w' || key == 'W') {
         this.paddleDown = false;
@@ -38,7 +45,7 @@ class Paddle extends Rectangle {
         this.paddleUp = false;
         this.paddleDown = true;
       }
-    } else  {
+    } else {
       if (key == CODED && keyCode == UP) {
         this.paddleDown = false;
         this.paddleUp = true;
@@ -48,7 +55,19 @@ class Paddle extends Rectangle {
         this.paddleDown = true;
       }
     }
-  }//end keyPressed
+  }//end twoPlayerKeyPressed
+  void onePlayerKeyPressed() {
+    if (x < pongPlayAreaMiddle) {
+      if (key == 'w' || key == 'W') {
+        this.paddleDown = false;
+        this.paddleUp = true;
+      }
+      if ( key == 's' || key == 'S') {
+        this.paddleUp = false;
+        this.paddleDown = true;
+      }
+    }
+  }//end onePlayerKeyPressed
   //
   void keyReleased()  {
     if (x < pongPlayAreaMiddle) {
@@ -72,9 +91,15 @@ class Paddle extends Rectangle {
     }
   }//end keyReleased
   //
+  void reset() {
+    pongGameOn = false;
+    this.y = (playAreaY) + (playAreaH/2) - (h/2);
+  }//end reset
+  //
   void paddleMove() {
     if (paddleUp) paddleUp();
     if (paddleDown) paddleDown();
+    if (onePlayer) rightPaddleAI();
   }//end paddleMove
   void paddleUp() {
     y -= (paddleTravel);//moving up
@@ -82,16 +107,61 @@ class Paddle extends Rectangle {
   }//end paddleUp
   void paddleDown() {
     y += (paddleTravel);//moving down
-    if (y > playAreaY+playAreaHeight-h) y = playAreaY+playAreaHeight-h;//error catch: will not go off screen
+    if (y > playAreaY+playAreaH-h) y = playAreaY+playAreaH-h;//error catch: will not go off screen
   }//end paddleDown
-  /* Features:
-   - Give Ball X-variable to bounce between two y-variables
-   */
-  //Getters and Setters
-  void variablesUpdate( float pongPlayAreaMiddleParameter, float xNetValue, float sp, float ballw, float playAreaYParameter, float playAreaH, float v7, float v8) {
+  void rightPaddleAI() {
+    ballUpdate(shapes.get(9).x, shapes.get(9).y);
+    if ( ballX > pongPlayAreaMiddle ) {
+      if (mai || eai) {
+        mediumEasyai();
+      } else {//impossible ai
+        hai();
+      }
+    }
+    errorCatchAi();
+  }//end rightPaddleAI
+  void hai() {
+    if (shapes.get(12).y+(h/2) <= (ballY) || shapes.get(12).y+(h/2) >= (ballY)) {
+      if (shapes.get(12).y+(h/2) <= (ballY)) {//medium Ai
+        shapes.get(12).y += paddleTravel;
+      } else {
+        shapes.get(12).y -= paddleTravel;
+      }
+    }
+  }//end hai
+  void mediumEasyai() {
+    float demarcation = 0;//degree to which the paddle will miss
+    if (mai) {//medium ai
+      demarcation = random(playAreaH);//degree to which the paddle will miss
+    } else {//easy ai
+      demarcation = random(playAreaH*2);//degree to which the paddle will miss
+    }
+    if (shapes.get(12).y+(h/2)+demarcation <= (ballY) || shapes.get(12).y+(h/2)-demarcation >= (ballY)) {
+      if (shapes.get(12).y+(h/2)+demarcation <= (ballY)) {//medium Ai
+        shapes.get(12).y += paddleTravel;
+      } else {
+        shapes.get(12).y -= paddleTravel;
+      }
+    }
+  }//end mediumEasyai
+  void errorCatchAi() {
+    if (shapes.get(12).y < playAreaY || shapes.get(12).y > playAreaY+playAreaH-shapes.get(12).h) {//error catch
+      if (shapes.get(12).y < playAreaY) {
+        shapes.get(12).y = playAreaY;
+      } else {
+        shapes.get(12).y = playAreaY+playAreaH-shapes.get(12).h;
+      }
+    }
+  }//end errorCatchAi
+  float ballX, ballY;
+  void ballUpdate(float v0, float v1) {
+    ballX = v0;
+    ballY = v1;
+  }//end ballUpdate
+  void variablesUpdate( float pongPlayAreaMiddleParameter, float xNetValue, float sp, float ballw, float playAreaYParameter, float playAreaHeight, float v6, float v7, float v8) {
     ballW = ballw;
     playAreaY = playAreaYParameter;//smallest Y value for paddle movement height/10
-    playAreaHeight = playAreaH;
+    playAreaH = playAreaHeight;
     pongPlayAreaMiddle = pongPlayAreaMiddleParameter;
     goalWidth = (ballW*3);
     float startPositionDifferent = ( 0.25 );//has to be decimal
@@ -110,11 +180,10 @@ class Paddle extends Rectangle {
       x -= w;
       er += xNetValue-w;
     }
-    //if ( sp == width ) goalX = sp - goalWidth;
     this.x = (goalX) + (goalWidth);
     this.paddleTravel = (playAreaHeight/50);//paddle speed
     this.c = randomColor();
-  } //End Paddle X Update
+  }//end variablesUpdate
   //
   color backgroundColor() {
     color nightMode = 0;
