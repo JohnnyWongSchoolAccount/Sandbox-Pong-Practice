@@ -11,7 +11,7 @@ class RectText extends Rectangle {
   void draw() {
     fill(c);
     rect(x, y, w, h);
-    rectText("( •, ^ •,) Wong Pong");
+    rectText("( •, V •,) Wong Pong");
     fill(colorReset);
   }//end draw
   void keyPressed() {}//end keyPressed

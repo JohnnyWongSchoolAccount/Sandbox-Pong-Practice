@@ -17,30 +17,83 @@ class Button extends Rectangle {
       drawing(hoverOver, secondaryColor);
       rectSwitchingText("Pong", "Menu", portOn);
     }
+    if (modeOn) {
+      if (x == twoPlayer) {
+        drawing(hoverOver, secondaryColor);
+        rectText("Two Player");
+      }
+      if (x == onePlayerX) {
+        drawing(hoverOver, secondaryColor);
+        rectText("One Player");
+      }
+      if (pongAiDropMenu) {
+        if (x == haiX) {
+          drawing(hoverOver, secondaryColor);
+          rectText("Hard Algorithm");
+        }
+        if (x == maiX) {
+          drawing(hoverOver, secondaryColor);
+          rectText("Medium Algorithm");
+        }
+        if (x == eaiX) {
+          drawing(hoverOver, secondaryColor);
+          rectText("Easy Algorithm");
+        }
+      }
+    }
     if (pongOn) {
       if (x == pauseX) {
         drawing(hoverOver, secondaryColor);
         rectSwitchingText("PAUSE", "PLAY", pongGameOn);
       }
-    fill(colorReset);
+      if (y == resetScoreY && x != quitX) {
+        drawing(hoverOver, secondaryColor);
+        rectText("Reset");
+      }
     }
+    fill(colorReset);
   }//end Drawing
   //
   void mousePressed() {
     if (x == quitX) mousePressedExitFunction();
     if (x == menuToPongX) mousePressedMenuToPongFunction();
-    if (x == pauseX && pongOn) mousePressedPauseGameFunction();
+    if (modeOn) {
+      if (x == twoPlayer) mousePressedTwoPlayerFunction();
+      if (x == onePlayerX) mousePressedOnePlayerFunction();
+      if (pongAiDropMenu) {
+        if (x == haiX) mousePressedHaiFunction();
+        if (x == maiX) mousePressedMaiFunction();
+        if (x == eaiX) mousePressedEaiFunction();
+      }
+    }
+    if (pongOn) {
+      if (x == pauseX) mousePressedPauseGameFunction();
+      if (y == resetScoreY) mousePressedResetScoreFunction();
+    }
   }//end mousePressed
   //
   void keyPressed() {}//end keyPressed
   //
   void keyReleased()  {}//end keyReleased
   //
-  float quitX, menuToPongX, pauseX;
-  void variablesUpdate(float v0, float v1, float v2, float v3, float v4, float v5, float v6, float v7) {
+  void reset() {
+    resetScore();
+    onePlayer = false;
+    mai = false;
+    eai = false;
+  }//end reset
+  //
+  float quitX, menuToPongX, pauseX, resetScoreY, twoPlayer, onePlayerX, haiX, maiX, eaiX;
+  void variablesUpdate(float v0, float v1, float v2, float v3, float v4, float v5, float v6, float v7, float v8) {
     quitX = v0;
     menuToPongX = v1;
     pauseX = v2;
+    resetScoreY = v3;
+    twoPlayer = v4;
+    onePlayerX= v5;
+    haiX = v6;
+    maiX = v7;
+    eaiX = v8;
   }//end variablesUpdate
   //
   void drawing(color hoverOver, color buttonColor) {
@@ -60,6 +113,43 @@ class Button extends Rectangle {
     if ( mouseX>=x && mouseX<=x+w && mouseY>= y && mouseY<=y+h )
     pongOnOffSwitch();
   }//end mousePressedPauseGameFunction
+  void mousePressedResetScoreFunction() {
+    if ( mouseX>=x && mouseX<=x+w && mouseY>= y && mouseY<=y+h )
+    resetScore();
+  }//end mousePressedResetScoreFunction
+  void resetScore() {
+    scoreRight = 0;
+    scoreLeft = 0;
+  }//end resetScore
+  void mousePressedTwoPlayerFunction() {
+    if ( mouseX>=x && mouseX<=x+w && mouseY>= y && mouseY<=y+h )
+    modeSwitch();
+  }//end mousePressedTwoPlayerFunction
+  void mousePressedOnePlayerFunction() {
+    if ( mouseX>=x && mouseX<=x+w && mouseY>= y && mouseY<=y+h ) {
+      pongAiDropMenu();
+    }
+  }//end mousePressedOnePlayerFunction
+  void mousePressedHaiFunction() {
+    if ( mouseX>=x && mouseX<=x+w && mouseY>= y && mouseY<=y+h ) {
+      onePlayer = true;
+      modeSwitch();
+    }
+  }//end mousePressedHaiFunction
+  void mousePressedMaiFunction() {
+    if ( mouseX>=x && mouseX<=x+w && mouseY>= y && mouseY<=y+h ) {
+      onePlayer = true;
+      mai = true;
+      modeSwitch();
+    }
+  }//end mousePressedMaiFunction
+  void mousePressedEaiFunction() {
+    if ( mouseX>=x && mouseX<=x+w && mouseY>= y && mouseY<=y+h ) {
+      onePlayer = true;
+      eai = true;
+      modeSwitch();
+    }
+  }//end mousePressedEaiFunction
   void rectText (String firstText) {
     drawText( height, ink, CENTER, CENTER, Font, textSpace+firstText+textSpace, x, y, w, h);
   }//end rectText
@@ -71,6 +161,13 @@ class Button extends Rectangle {
     }
   }//end rectSwitchingText
   //
+  void pongAiDropMenu() {
+    if (pongAiDropMenu) {
+      pongAiDropMenu = false;
+    } else {
+      pongAiDropMenu = true;
+    }
+  }//end dropMenu
   color backgroundColor() {
     color nightMode = 0;
     return nightMode;
