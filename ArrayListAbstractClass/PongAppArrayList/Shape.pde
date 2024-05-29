@@ -35,7 +35,7 @@ abstract class Shape {
   //
   abstract color backgroundColor();
   //
-  abstract void variablesUpdate( float variable1, float variable2, float variable3, float variable4, float variable5, float variable6, float variable7, float variable8, float variable9);
+  abstract void variablesUpdate( float variable1, float variable2, float variable3, float variable4, float variable5, float variable6, float variable7, float variable8, float variable9, float variable10);
   //
 }//end Shape
 //end Shape subProgram

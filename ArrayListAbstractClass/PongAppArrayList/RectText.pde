@@ -11,14 +11,14 @@ class RectText extends Rectangle {
   void draw() {
     fill(c);
     rect(x, y, w, h);
-    rectText("( •, V •,) Wong Pong");
+    rectText("( •, ^ •,) Wong Pong");//_(:‚‹ l)=
     fill(colorReset);
   }//end draw
   void keyPressed() {}//end keyPressed
   void keyReleased() {}//end keyReleased
   void mousePressed() {}//end mousePressed
   void reset() {}//end reset
-  void variablesUpdate(float v0, float v1, float v2, float v3, float v4, float v5, float v6, float v7, float v8) {
+  void variablesUpdate(float v0, float v1, float v2, float v3, float v4, float v5, float v6, float v7, float v8, float v9) {
   }//end variablesUpdate
   void rectText(String firstText) {
     drawText( height, ink, CENTER, CENTER, Font, textSpace+textSpace+firstText+textSpace+textSpace, x, y, w, h);

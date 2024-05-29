@@ -11,7 +11,7 @@ class Firework extends Circle {
   float[] xVelocity = new float[sparks];
   float[] yVelocity = new float[sparks];
   //
-  Firework (float x, float y, float w, float h, color c) {
+  Firework(float x, float y, float w, float h, color c) {
     super(x, y, w, h, c);
   }//Fireworks
   //Methods
@@ -37,7 +37,7 @@ class Firework extends Circle {
   //
   void reset() {}//end reset
   //
-  void variablesUpdate(float ballW, float g, float xParameter, float yParameter, float v4, float v5, float v6, float v7, float v8) {
+  void variablesUpdate(float ballW, float g, float xParameter, float yParameter, float v4, float v5, float v6, float v7, float v8, float v9) {
     playAreaX = v4;
     playAreaY = v5;
     playAreaW = v6;

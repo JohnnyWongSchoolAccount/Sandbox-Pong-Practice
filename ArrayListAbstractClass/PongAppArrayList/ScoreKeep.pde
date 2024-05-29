@@ -1,7 +1,7 @@
 class ScoreKeep extends Rectangle {
   //Global Variables
   //
-  ScoreKeep (float x, float y, float w, float h, color c) {
+  ScoreKeep(float x, float y, float w, float h, color c) {
     super(x, y, w, h, c);
     this.x = refMeasure;
     this.w = height/8;
@@ -40,7 +40,7 @@ class ScoreKeep extends Rectangle {
   void reset() {}//end reset
   //
   float sly, sry;
-  void variablesUpdate(float v0, float v1, float v2, float v3, float v4, float v5, float v6, float v7, float v8) {
+  void variablesUpdate(float v0, float v1, float v2, float v3, float v4, float v5, float v6, float v7, float v8, float v9) {
     sly = v0;
     sry = v1;
   }//end variablesUpdate

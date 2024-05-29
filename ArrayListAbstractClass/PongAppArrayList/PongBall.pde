@@ -30,30 +30,43 @@ class Ball extends Circle {
     if (!disappear) {
       ellipse(x, y, w, w);
       winCondition(); 
-      if (pongGameOn) moving();
+      if (pongGameOn && !isDelayed) moving();
     }
     explosions();
     if (!pongGameOn) firework.drawing();
+    DelayedOn();
     fill(colorReset);
   }//end draw
   //
+  void DelayedOn() {
+    if (isDelayed && millis() - pauseStartTime >= restartDelay) {
+      isDelayed = false;
+    }
+  }//end DelayedOn
   void mousePressed() {
     if ( mouseX>=playAreaX+(w/2.1) && mouseX<=playAreaX+playAreaW-(w/2.1) && mouseY>=playAreaY+(w/2) && mouseY<=playAreaY+playAreaH-(w/2) && pongGameOn) {
-      shapes.get(10).disappear = false;
-      shapes.get(10).x = mouseX;
-      shapes.get(10).y = mouseY;
+      shapes.get(11).disappear = false;
+      shapes.get(11).x = mouseX;
+      shapes.get(11).y = mouseY;
     }
   }//end mousePressed
   //
   void keyPressed() {
-    if (key == '2') shapes.get(7).disappear = true;
+    if (key == '2') shapes.get(11).disappear = true;
+    if (key == '1') shapes.get(10).disappear = true;
+    if (key == 'p' || key == 'P') { // Press 'p' or 'P' to toggle pause
+      isDelayed = !isDelayed;
+      if (isDelayed) {
+        pauseStartTime = millis(); // Record the time when pause started
+      }
+    }
   }//end keyPressed
   //
   void keyReleased()  {}//end keyReleased
   //
   void reset() {
     toCenter();
-    shapes.get(10).disappear = true;
+    shapes.get(11).disappear = true;
   }//end reset
   //
   float xDirection() {
@@ -95,7 +108,7 @@ class Ball extends Circle {
   }//end collisonsUpdate
   float paddleX, paddleY, paddleW, paddleH;
   float paddleX1, paddleY1, paddleW1, paddleH1;
-  void variablesUpdate(float x, float y, float w, float h, float x1, float y1, float w1, float h1, float v8) {
+  void variablesUpdate(float x, float y, float w, float h, float x1, float y1, float w1, float h1, float v8, float v9) {
     paddleX = x;
     paddleY = y;
     paddleW = w;
@@ -110,14 +123,22 @@ class Ball extends Circle {
       if (this.x <= (playAreaX+w/2)) {
         winConLeft = true;
         toCenter();
-        pongGameOn = false;
+        delayedCode();
+        //if (!onePlayer && !screenSaver) pongGameOn = false;
       } else {
         winConRight = true;
         toCenter();
-        pongGameOn = false;
+        delayedCode();
+        //if (!onePlayer && !screenSaver) pongGameOn = false;
       }
     }
   }//end winCondition
+  void delayedCode() {
+    isDelayed = !isDelayed;
+    if (isDelayed) {
+      pauseStartTime = millis(); // Record the time when pause started
+    }
+  }
   boolean executed = false;
   void explosions() {
     if (!executed) {
@@ -127,19 +148,19 @@ class Ball extends Circle {
     if (winConRight || winConLeft) {
       if (!disappear) {
         firework = new Firework(x, y, w, w, c);
-        firework.variablesUpdate(w, 0.5, x, y, playAreaX, playAreaY, playAreaW, playAreaH, 0);
+        firework.variablesUpdate(w, 0.5, x, y, playAreaX, playAreaY, playAreaW, playAreaH, 0, 0);
       }
     }
   }//end explosions
   void toCenter() {
-    if (shapes.get(10).disappear) {
+    if (shapes.get(11).disappear) {
       this.x = playAreaX+(playAreaW/2);
       this.y = playAreaY+(playAreaH/2);
     } else {
-      shapes.get(9).x = playAreaX+(playAreaW/2);
-      shapes.get(9).y = playAreaY+(playAreaH/2)-(w);
       shapes.get(10).x = playAreaX+(playAreaW/2);
-      shapes.get(10).y = playAreaY+(playAreaH/2)+(w);
+      shapes.get(10).y = playAreaY+(playAreaH/2)-(w);
+      shapes.get(11).x = playAreaX+(playAreaW/2);
+      shapes.get(11).y = playAreaY+(playAreaH/2)+(w);
     }
   }//end toCenter
   void collisionsPaddle() {

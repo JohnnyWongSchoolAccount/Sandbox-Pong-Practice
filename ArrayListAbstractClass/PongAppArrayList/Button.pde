@@ -1,12 +1,63 @@
 class Button extends Rectangle {
   //Global Variables
   //
-  Button (float x, float y, float w, float h, color c) {
+  Button(float x, float y, float w, float h, color c) {
     super(x, y, w, h, c);
   }//end Button
   //Methods
   void drawing() {
     noStroke();
+    universalUI();
+    if (modeOn) modeUI();
+    if (pongOn) pongUI();
+    fill(colorReset);
+  }//end Drawing
+  void mousePressed() {
+    universalMousePressed();
+    if (modeOn) modeMousePressed();
+    if (pongOn) pongMousePressed();
+  }//end mousePressed
+  void keyPressed() {}//end keyPressed
+  void keyReleased()  {}//end keyReleased
+  void reset() {
+    resetScore();
+    onePlayer = false;
+    mai = false;
+    eai = false;
+    screenSaver = false;
+  }//end reset
+  float quitX, menuToPongX, pauseX, resetScoreY, twoPlayerX, onePlayerX, haiX, maiX, eaiX, screenSaverX;
+  void variablesUpdate(float v0, float v1, float v2, float v3, float v4, float v5, float v6, float v7, float v8, float v9) {
+    quitX = v0;
+    menuToPongX = v1;
+    pauseX = v2;
+    resetScoreY = v3;
+    twoPlayerX = v4;
+    onePlayerX= v5;
+    haiX = v6;
+    maiX = v7;
+    eaiX = v8;
+    screenSaverX = v9;
+  }//end variablesUpdate
+  void universalMousePressed() {
+    if (x == quitX) mousePressedExitFunction();
+    if (x == menuToPongX) mousePressedMenuToPongFunction();
+  }//end universalMousePressed
+  void modeMousePressed() {
+    if (x == twoPlayerX) mousePressedTwoPlayerFunction();
+    if (x == onePlayerX) mousePressedOnePlayerFunction();
+    if (x == screenSaverX) mousePressedScreenSaverFunction();
+    if (dmai) {
+      if (x == haiX) mousePressedHaiFunction();
+      if (x == maiX) mousePressedMaiFunction();
+      if (x == eaiX) mousePressedEaiFunction();
+    }
+  }//end modeMousePressed
+  void pongMousePressed() {
+    if (x == pauseX) mousePressedPauseGameFunction();
+    if (y == resetScoreY) mousePressedResetScoreFunction();
+  }//end pongMousePressed
+  void universalUI() {
     if (x == quitX) {
       color quitOn = #ff1919;
       color quitOff = #00b530;
@@ -17,85 +68,45 @@ class Button extends Rectangle {
       drawing(hoverOver, secondaryColor);
       rectSwitchingText("Pong", "Menu", portOn);
     }
-    if (modeOn) {
-      if (x == twoPlayer) {
+  }//end universalUI
+  void modeUI() {
+    if (x == twoPlayerX) {
+      drawing(hoverOver, secondaryColor);
+      rectText("Two Player");
+    }
+    if (x == onePlayerX) {
+      drawing(hoverOver, secondaryColor);
+      rectText("One Player");
+    }
+    if (x == screenSaverX) {
+      drawing(hoverOver, secondaryColor);
+      rectText("ScreenSaver");
+    }
+    if (dmai) {
+      if (x == haiX) {
         drawing(hoverOver, secondaryColor);
-        rectText("Two Player");
+        rectText("Hard Algorithm");
       }
-      if (x == onePlayerX) {
+      if (x == maiX) {
         drawing(hoverOver, secondaryColor);
-        rectText("One Player");
+        rectText("Medium Algorithm");
       }
-      if (pongAiDropMenu) {
-        if (x == haiX) {
-          drawing(hoverOver, secondaryColor);
-          rectText("Hard Algorithm");
-        }
-        if (x == maiX) {
-          drawing(hoverOver, secondaryColor);
-          rectText("Medium Algorithm");
-        }
-        if (x == eaiX) {
-          drawing(hoverOver, secondaryColor);
-          rectText("Easy Algorithm");
-        }
+      if (x == eaiX) {
+        drawing(hoverOver, secondaryColor);
+        rectText("Easy Algorithm");
       }
     }
-    if (pongOn) {
-      if (x == pauseX) {
-        drawing(hoverOver, secondaryColor);
-        rectSwitchingText("PAUSE", "PLAY", pongGameOn);
-      }
-      if (y == resetScoreY && x != quitX) {
-        drawing(hoverOver, secondaryColor);
-        rectText("Reset");
-      }
+  }//end modeUI
+  void pongUI() {
+    if (x == pauseX) {
+      drawing(hoverOver, secondaryColor);
+      rectSwitchingText("PAUSE", "PLAY", pongGameOn);
     }
-    fill(colorReset);
-  }//end Drawing
-  //
-  void mousePressed() {
-    if (x == quitX) mousePressedExitFunction();
-    if (x == menuToPongX) mousePressedMenuToPongFunction();
-    if (modeOn) {
-      if (x == twoPlayer) mousePressedTwoPlayerFunction();
-      if (x == onePlayerX) mousePressedOnePlayerFunction();
-      if (pongAiDropMenu) {
-        if (x == haiX) mousePressedHaiFunction();
-        if (x == maiX) mousePressedMaiFunction();
-        if (x == eaiX) mousePressedEaiFunction();
-      }
+    if (y == resetScoreY && x != quitX) {
+      drawing(hoverOver, secondaryColor);
+      rectText("Reset");
     }
-    if (pongOn) {
-      if (x == pauseX) mousePressedPauseGameFunction();
-      if (y == resetScoreY) mousePressedResetScoreFunction();
-    }
-  }//end mousePressed
-  //
-  void keyPressed() {}//end keyPressed
-  //
-  void keyReleased()  {}//end keyReleased
-  //
-  void reset() {
-    resetScore();
-    onePlayer = false;
-    mai = false;
-    eai = false;
-  }//end reset
-  //
-  float quitX, menuToPongX, pauseX, resetScoreY, twoPlayer, onePlayerX, haiX, maiX, eaiX;
-  void variablesUpdate(float v0, float v1, float v2, float v3, float v4, float v5, float v6, float v7, float v8) {
-    quitX = v0;
-    menuToPongX = v1;
-    pauseX = v2;
-    resetScoreY = v3;
-    twoPlayer = v4;
-    onePlayerX= v5;
-    haiX = v6;
-    maiX = v7;
-    eaiX = v8;
-  }//end variablesUpdate
-  //
+  }//end pongUI
   void drawing(color hoverOver, color buttonColor) {
     if ( mouseX>=x && mouseX<=x+w && mouseY>=y && mouseY<=y+h )
     {fill(hoverOver);} else {fill(buttonColor);}
@@ -150,6 +161,12 @@ class Button extends Rectangle {
       modeSwitch();
     }
   }//end mousePressedEaiFunction
+  void mousePressedScreenSaverFunction() {
+    if ( mouseX>=x && mouseX<=x+w && mouseY>= y && mouseY<=y+h ) {
+      screenSaver = true;
+      modeSwitch();
+    }
+  }//end mousePressedEaiFunction
   void rectText (String firstText) {
     drawText( height, ink, CENTER, CENTER, Font, textSpace+firstText+textSpace, x, y, w, h);
   }//end rectText
@@ -162,10 +179,10 @@ class Button extends Rectangle {
   }//end rectSwitchingText
   //
   void pongAiDropMenu() {
-    if (pongAiDropMenu) {
-      pongAiDropMenu = false;
+    if (dmai) {
+      dmai = false;
     } else {
-      pongAiDropMenu = true;
+      dmai = true;
     }
   }//end dropMenu
   color backgroundColor() {

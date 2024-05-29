@@ -1,7 +1,7 @@
 abstract class Circle extends Shape {
   //Global Variables
   //
-  Circle (float x, float y, float w, float h, color c) {
+  Circle(float x, float y, float w, float h, color c) {
     super(x, y, w, h, c);
   }//end Circle
   //Methods
@@ -9,12 +9,11 @@ abstract class Circle extends Shape {
   //
   abstract void mousePressed();
   //
-  //
   abstract void keyPressed();
   //
   abstract void keyReleased();
   //
-  abstract void variablesUpdate(float v0, float v1, float v2, float v3, float v4, float v5, float v6, float v7, float v8);
+  abstract void variablesUpdate(float v0, float v1, float v2, float v3, float v4, float v5, float v6, float v7, float v8, float v9);
   //
   abstract void reset();
   //

@@ -10,9 +10,9 @@ void setupPort() {
   refMeasure = width/50;
   Button quit = new Button(width-width/10, 0, width/10, height/14, 0); 
   Button menuToPong = new Button(refMeasure, (height-(height/8 + refMeasure)), width/6, height/8, 0);
-  RectText title = new RectText(width/2-(width*4/10), height/10, (width*4)/5, height/3, secondaryColor);
-  quit.variablesUpdate(quit.x, 0, 0, 0, 0, 0, 0, 0, 0);
-  menuToPong.variablesUpdate(0, menuToPong.x, 0, 0, 0, 0, 0, 0, 0 );
+  RectText title = new RectText(width/2-(width*4/10), height/10, width*4/5, height/3, secondaryColor);
+  quit.variablesUpdate(quit.x, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+  menuToPong.variablesUpdate(0, menuToPong.x, 0, 0, 0, 0, 0, 0, 0, 0);
   //
   shapes.add(quit); //Element 0, quit
   shapes.add(menuToPong); //Element 1, menuToPong
