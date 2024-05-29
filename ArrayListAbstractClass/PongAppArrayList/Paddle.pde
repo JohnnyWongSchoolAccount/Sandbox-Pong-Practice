@@ -125,8 +125,8 @@ class Paddle extends Rectangle {
     errorCatchAi();
   }//end screenSaver
   void haimai() {
-    float whatToPick = random(1, 3);
-    if (whatToPick > 1.3) { 
+    float whatToPick = random(200);
+    if (whatToPick > 50) { 
       mai = true;
     } else {
       mai = false;

@@ -33,7 +33,7 @@ class Ball extends Circle {
       if (pongGameOn && !isDelayed) moving();
     }
     explosions();
-    if (!pongGameOn) firework.drawing();
+    if (!pongGameOn || isDelayed) firework.drawing();
     DelayedOn();
     fill(colorReset);
   }//end draw
