@@ -39,7 +39,7 @@ class Ball extends Circle {
   }//end draw
   //
   void DelayedOn() {
-    if (isDelayed && millis() - pauseStartTime >= restartDelay) {
+    if (isDelayed && millis() - pauseStartTime >= delayTime) {
       isDelayed = false;
     }
   }//end DelayedOn

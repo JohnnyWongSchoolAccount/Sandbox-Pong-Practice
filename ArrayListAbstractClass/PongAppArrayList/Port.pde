@@ -13,6 +13,7 @@ void setupPort() {
   RectText title = new RectText(width/2-(width*4/10), height/10, width*4/5, height/3, secondaryColor);
   quit.variablesUpdate(quit.x, 0, 0, 0, 0, 0, 0, 0, 0, 0);
   menuToPong.variablesUpdate(0, menuToPong.x, 0, 0, 0, 0, 0, 0, 0, 0);
+  title.variablesUpdate(title.x, 0, 0, 0, 0, 0, 0, 0, 0, 0);
   //
   shapes.add(quit); //Element 0, quit
   shapes.add(menuToPong); //Element 1, menuToPong
